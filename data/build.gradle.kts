@@ -33,6 +33,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":data_api"))
+    implementation(project(":domain_models"))
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.json)
+    implementation(libs.okhttp3.interceptor)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

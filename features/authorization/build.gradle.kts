@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data_api"))
+    implementation(project(":domain_models"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -40,4 +42,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }
