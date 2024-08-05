@@ -5,6 +5,6 @@ import com.test.domain.models.request.SendAuthCode
 import com.test.domain.models.response.Authorization
 
 interface AuthorizationRepository {
-    suspend fun authorization(checkAuthCode: CheckAuthCode): Authorization
-    suspend fun authCode(sendAuthCode: SendAuthCode):Boolean
+    suspend fun checkAuthCode(checkAuthCode: CheckAuthCode): Authorization
+    suspend fun sendAuthCode(sendAuthCode: SendAuthCode):Boolean
 }

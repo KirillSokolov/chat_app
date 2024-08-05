@@ -1,8 +1,10 @@
 package com.test.chat.domain
 
-class AddMessageUseCase {
+import com.test.data_api.ChatRepository
+
+class AddMessageUseCase(private val repository: ChatRepository) {
 
     suspend fun execute() {
-
+        repository.addMessage()
     }
 }

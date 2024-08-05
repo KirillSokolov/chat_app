@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.jvm)
 }
 
 java {
@@ -8,7 +8,9 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-dependencies{
+dependencies {
     implementation(project(":domain_models"))
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.javax.inject)
 
 }

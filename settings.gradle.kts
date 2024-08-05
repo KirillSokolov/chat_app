@@ -21,7 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Test work"
 include(":app")
-include(":core:di")
 include(":core:navigation")
 include(":core:ui")
 include(":data")

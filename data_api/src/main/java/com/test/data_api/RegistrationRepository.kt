@@ -1,7 +1,7 @@
 package com.test.data_api
 
-import com.test.domain_models.Registration
+import com.test.domain.models.response.Registration
 
 interface RegistrationRepository {
-    fun registration():Registration
+    fun registration(): Registration
 }
