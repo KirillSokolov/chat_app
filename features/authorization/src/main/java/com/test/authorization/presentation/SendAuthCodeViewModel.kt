@@ -7,33 +7,37 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.SendAuthCodeUseCase
+import com.test.domain.models.request.SendAuthCode
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+internal sealed class NextScreen {
+    data object Nothing : NextScreen()
+    class CheckAuthCodeFragment() : NextScreen()
+    class ChatListFragment() : NextScreen()
+}
 
 internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) :
     ViewModel() {
 
-    private val _news = MutableLiveData<List<Article>>(emptyList())
-    val news: LiveData<List<Article>> = _news
 
-    private val _screen = MutableLiveData<NewsScreen>()
-    val screen: LiveData<NewsScreen> = _screen
+    private val _screen = MutableLiveData<NextScreen>()
+    val screen: LiveData<NextScreen> = _screen
 
-    fun load() {
-        viewModelScope.launch {
-            val articles = getArticlesUseCase.execute()
-            _news.postValue(articles)
+
+    fun sendAuthCode(phone: String) {
+        if(phone.isEmpty()){
+
+        }else{
+          //  viewModelScope.launch(Dispatchers.IO) {
+                //useCase.execute(SendAuthCode(phone = phone))
+                 _screen.value = NextScreen.CheckAuthCodeFragment()
+                 _screen.value = NextScreen.Nothing
+          //  }
+
         }
-    }
 
-    fun articleClicked(article: Article) {
-        val articleDetails = ArticleDetailsArg(
-            title = article.title,
-            summary = article.description,
-            imageUrl = article.imageUrl,
-            articleUrl = article.articleUrl
-        )
-        _screen.value = NewsScreen.Details(article = articleDetails)
-        _screen.value = NewsScreen.Nothing
+
     }
 }
 

@@ -1,5 +1,6 @@
 package com.test.chatapp.di
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Qualifier
@@ -26,7 +27,7 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(apiUrl + apiVersion)
             .client(okHttpClient)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
     }
 

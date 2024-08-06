@@ -7,33 +7,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.CheckAuthCodeUseCase
+import com.test.domain.models.request.CheckAuthCode
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CheckAuthCodeViewModel (private val useCase: CheckAuthCodeUseCase) :
+internal class CheckAuthCodeViewModel (private val useCase: CheckAuthCodeUseCase) :
     ViewModel() {
 
-    private val _news = MutableLiveData<List<Article>>(emptyList())
-    val news: LiveData<List<Article>> = _news
 
-    private val _screen = MutableLiveData<NewsScreen>()
-    val screen: LiveData<NewsScreen> = _screen
 
-    fun load() {
-        viewModelScope.launch {
-            val articles = getArticlesUseCase.execute()
-            _news.postValue(articles)
-        }
-    }
+    private val _screen = MutableLiveData<NextScreen>()
+    val screen: LiveData<NextScreen> = _screen
 
-    fun articleClicked(article: Article) {
-        val articleDetails = ArticleDetailsArg(
-            title = article.title,
-            summary = article.description,
-            imageUrl = article.imageUrl,
-            articleUrl = article.articleUrl
-        )
-        _screen.value = NewsScreen.Details(article = articleDetails)
-        _screen.value = NewsScreen.Nothing
+
+    fun checkAuthCode(phone:String, code: String ) {
+      //  viewModelScope.launch(Dispatchers.IO) {
+         //   useCase.execute(CheckAuthCode(phone = phone, code = code))
+            _screen.value = NextScreen.ChatListFragment()
+            _screen.value = NextScreen.Nothing
+      //  }
+
     }
 }
 

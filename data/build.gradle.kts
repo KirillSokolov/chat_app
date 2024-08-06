@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kiparo.newsappfeaturedagger.data"
+    namespace = "com.test.chatapp.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

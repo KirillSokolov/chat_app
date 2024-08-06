@@ -1,5 +1,8 @@
 package com.test.chatapp.di
 
+import com.test.chatapp.presentation.navigation.NavigatorLifecycle
+import com.test.chatapp.presentation.navigation.RouterImpl
+import com.test.navigation.Router
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

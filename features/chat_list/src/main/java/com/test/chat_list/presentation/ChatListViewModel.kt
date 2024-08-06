@@ -8,33 +8,47 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.chat_list.domain.AddChatUseCase
 import com.test.chat_list.domain.GetAllChatUseCase
+import com.test.domain.models.chat.Chat
 import kotlinx.coroutines.launch
 
-class ChatListViewModel (private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
+internal sealed class NextScreen {
+    data object Nothing : NextScreen()
+    class ChatFragment() : NextScreen()
+    class UserFragment() : NextScreen()
+}
+
+internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModel() {
 
-    private val _news = MutableLiveData<List<Article>>(emptyList())
-    val news: LiveData<List<Article>> = _news
+    private val userId = 0L;
 
-    private val _screen = MutableLiveData<NewsScreen>()
-    val screen: LiveData<NewsScreen> = _screen
+    private val _chats = MutableLiveData<List<Chat>>(emptyList())
+    val chats: LiveData<List<Chat>> = _chats
+
+    private val _screen = MutableLiveData<NextScreen>()
+    val screen: LiveData<NextScreen> = _screen
 
     fun load() {
         viewModelScope.launch {
-            val articles = getArticlesUseCase.execute()
-            _news.postValue(articles)
+            val chats = getAllChatUseCase.execute(userId)
+            _chats.postValue(chats)
         }
     }
 
-    fun articleClicked(article: Article) {
-        val articleDetails = ArticleDetailsArg(
-            title = article.title,
-            summary = article.description,
-            imageUrl = article.imageUrl,
-            articleUrl = article.articleUrl
-        )
-        _screen.value = NewsScreen.Details(article = articleDetails)
-        _screen.value = NewsScreen.Nothing
+    fun addChatClicked() {
+        viewModelScope.launch {
+            addChatUseCase.execute()
+        }
+    }
+
+    fun userClicked() {
+        _screen.value = NextScreen.UserFragment()
+        _screen.value = NextScreen.Nothing
+    }
+
+    fun chatClicked(id: Long) {
+        _screen.value = NextScreen.ChatFragment()
+        _screen.value = NextScreen.Nothing
     }
 }
 

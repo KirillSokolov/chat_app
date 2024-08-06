@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.test.authorization_api.AuthorizationFeatureApi
 import com.test.chatapp.R
 import com.test.chatapp.di.DaggerProvider
 import com.test.navigation.Router
@@ -20,7 +21,10 @@ class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder
     lateinit var router: Router
 
     @Inject
-    lateinit var newsFeatureApi: NewsFeatureApi
+    lateinit var authorizationApi: AuthorizationFeatureApi
+
+   // @Inject
+   // lateinit var authorizationApi: AuthorizationApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +35,7 @@ class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (savedInstanceState == null) {
-            router.navigateTo(newsFeatureApi.open())
+            router.navigateTo(authorizationApi.open())
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(

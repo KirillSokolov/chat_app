@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="onBackground">#19202D</color>
+    <color name="onSurfaceVariant">#777C88</color>
+    <color name="onSurface">#EEECEE</color>
+
+    <color name="surface">#FFFFFF</color>
+    <color name="inverseSurface">#000000</color>
+
+    <!-- ripple affect, control touch -->
+    <color name="controlHighlight">#33AAAAAA</color>
+</resources>

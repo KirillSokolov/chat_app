@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kiparo.newsappfeaturedagger.core.ui"
+    namespace = "com.test.chatapp.core.ui"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

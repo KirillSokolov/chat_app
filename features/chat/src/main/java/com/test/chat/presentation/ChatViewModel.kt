@@ -8,33 +8,35 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.chat.domain.AddMessageUseCase
 import com.test.chat.domain.GetAllMessagesUseCase
+import com.test.domain.models.chat.Message
 import kotlinx.coroutines.launch
 
-class ChatViewModel (private val getAllMessagesUseCase: GetAllMessagesUseCase, private val addMessageUseCase: AddMessageUseCase) :
+internal sealed class NextScreen {
+    data object Nothing : NextScreen()
+    class ChatListFragment : NextScreen()
+}
+
+internal class ChatViewModel (private val getAllMessagesUseCase: GetAllMessagesUseCase, private val addMessageUseCase: AddMessageUseCase) :
     ViewModel() {
 
-    private val _news = MutableLiveData<List<Article>>(emptyList())
-    val news: LiveData<List<Article>> = _news
+    private val chatId = 0L;
 
-    private val _screen = MutableLiveData<NewsScreen>()
-    val screen: LiveData<NewsScreen> = _screen
+    private val _messages = MutableLiveData<List<Message>>(emptyList())
+    val messages: LiveData<List<Message>> = _messages
+
+    private val _screen = MutableLiveData<NextScreen>()
+    val screen: LiveData<NextScreen> = _screen
 
     fun load() {
         viewModelScope.launch {
-            val articles = getArticlesUseCase.execute()
-            _news.postValue(articles)
+            val messages = getAllMessagesUseCase.execute(chatId)
+            _messages.postValue(messages)
         }
     }
 
-    fun articleClicked(article: Article) {
-        val articleDetails = ArticleDetailsArg(
-            title = article.title,
-            summary = article.description,
-            imageUrl = article.imageUrl,
-            articleUrl = article.articleUrl
-        )
-        _screen.value = NewsScreen.Details(article = articleDetails)
-        _screen.value = NewsScreen.Nothing
+    fun backButtonClicked() {
+        _screen.value = NextScreen.ChatListFragment()
+        _screen.value = NextScreen.Nothing
     }
 }
 

@@ -1,0 +1,21 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.ChatApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorOnBackground">@color/onBackground</item>
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorSurface">@color/surface</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/onSurface</item>
+        <item name="android:textColor">@color/onBackground</item>
+        <item name="android:textColorPrimary">@color/onBackground</item>
+        <item name="android:textColorSecondary">@color/onSurfaceVariant</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+
+        <!-- https://stackoverflow.com/questions/68241378/unable-to-change-the-color-of-action-bar-in-the-app  -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+    </style>
+</resources>

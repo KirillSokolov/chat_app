@@ -5,36 +5,48 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kiparo.newsappfeaturedagger.news.R
+import com.test.chat_api.ChatFeatureApi
+import com.test.chat_list.di.ChatListFeatureDepsProvider
+import com.test.chat_list.di.DaggerChatListComponent
+import com.test.chatapp.chat.list.R
+import com.test.chatapp.chat.list.databinding.FragmentChatListBinding
 import com.test.navigation.Router
+import com.test.ui.ChatAppAdapter
+import com.test.ui.SpaceDecoration
+import com.test.user_details_api.UserDetailsFeatureApi
 import javax.inject.Inject
 
-class ChatListFragment : Fragment(R.layout.fragment_news) {
+class ChatListFragment : Fragment(R.layout.fragment_chat_list) {
 
     @Inject
-    lateinit var vmFactory: ChatViewModelFactory
+    lateinit var vmFactory: ChatListViewModelFactory
 
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var chatFeatureApi: ChatFeatureApi
 
-    private val viewModel by viewModels<ChatViewModel> {
+    @Inject
+    lateinit var userDetailsFeatureApi: UserDetailsFeatureApi
+
+    private val viewModel by viewModels<ChatListViewModel> {
         vmFactory
     }
 
-    private val adapter = NewsAdapter {
-        viewModel.articleClicked(article = it)
+    private val adapter = ChatAppAdapter {
+        viewModel.chatClicked(it.id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val authorizationComponent = DaggerNewsComponent
+        val chatListComponent = DaggerChatListComponent
             .builder()
-            .addDeps(ChatFeatureDepsProvider.deps)
+            .addDeps(ChatListFeatureDepsProvider.deps)
             .build()
 
-        authorizationComponent.inject(this)
+        chatListComponent.inject(this)
 
         if (savedInstanceState == null) {
             viewModel.load()
@@ -43,42 +55,50 @@ class ChatListFragment : Fragment(R.layout.fragment_news) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentNewsBinding.bind(view)
 
-        binding.toolbar.inflateMenu(R.menu.menu_news)
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_settings -> {
-                    true
-                }
+        val binding = FragmentChatListBinding.bind(view)
 
-                else -> false
-            }
+        binding.btnUser.setOnClickListener{
+            viewModel.userClicked()
         }
 
-        binding.newsRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.newsRecyclerView.addItemDecoration(
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.addItemDecoration(
             SpaceDecoration(
                 spaceSize = resources.getDimensionPixelSize(
-                    com.kiparo.newsappfeaturedagger.core.ui.R.dimen.padding_10
+                    com.test.chatapp.core.ui.R.dimen.padding_10
                 )
             )
         )
-        binding.newsRecyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
-        viewModel.news.observe(viewLifecycleOwner) {
+        viewModel.chats.observe(viewLifecycleOwner) {
             adapter.items = it
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
-            if (it is NewsScreen.Details)
-                showArticleDetails(articleDetails = it.article)
+            when(it){
+                is NextScreen.ChatFragment -> {
+                    showChatFragment()
+                }
+                is NextScreen.UserFragment -> {
+                    showUserFragment()
+                }
+                NextScreen.Nothing -> {}
+            }
         }
     }
 
-    private fun showArticleDetails(articleDetails: ArticleDetailsArg) {
+    private fun showUserFragment() {
         router.navigateTo(
-            fragment = articleDetailsFeatureApi.open(articleDetails),
+            fragment = userDetailsFeatureApi.open(),
+            addToBackStack = true
+        )
+    }
+
+    private fun showChatFragment() {
+        router.navigateTo(
+            fragment = chatFeatureApi.open(),
             addToBackStack = true
         )
     }

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kiparo.newsappfeaturedagger.news"
+    namespace = "com.test.chatapp.authorization"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -41,8 +41,10 @@ dependencies {
     implementation(project(":core:navigation"))
     api(project(":core:ui"))
     implementation(project(":data_api"))
+    implementation(project(":data"))
     implementation(project(":domain_models"))
     implementation(project(":features:authorization_api"))
+    implementation(project(":features:chat_list_api"))
 
 
     implementation(libs.dagger)

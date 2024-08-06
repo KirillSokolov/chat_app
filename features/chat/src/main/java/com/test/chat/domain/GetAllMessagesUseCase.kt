@@ -1,10 +1,12 @@
 package com.test.chat.domain
 
-import com.test.data_api.ChatRepository
+import com.test.data.api.ChatRepository
+import com.test.domain.models.chat.Message
+import javax.inject.Inject
 
-class GetAllMessagesUseCase(private val repository: ChatRepository) {
+class GetAllMessagesUseCase @Inject constructor(private val repository: ChatRepository) {
 
-    suspend fun execute(id: Long) {
-        return repository.getChat(id)
+    suspend fun execute(chatId: Long): List<Message> {
+        return repository.getAllMessages(chatId)
     }
 }

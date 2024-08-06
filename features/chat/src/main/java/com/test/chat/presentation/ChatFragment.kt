@@ -5,12 +5,16 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kiparo.newsappfeaturedagger.news.R
 import com.test.chat.di.ChatFeatureDepsProvider
+import com.test.chat.di.DaggerChatComponent
+import com.test.chat_list_api.ChatListFeatureApi
+import com.test.chatapp.news.R
+import com.test.chatapp.news.databinding.FragmentChatBinding
 import com.test.navigation.Router
+import com.test.ui.SpaceDecoration
 import javax.inject.Inject
 
-class ChatFragment : Fragment(R.layout.fragment_news) {
+class ChatFragment : Fragment(R.layout.fragment_chat) {
 
     @Inject
     lateinit var vmFactory: ChatViewModelFactory
@@ -18,24 +22,22 @@ class ChatFragment : Fragment(R.layout.fragment_news) {
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var chatListFeatureApi: ChatListFeatureApi
 
     private val viewModel by viewModels<ChatViewModel> {
         vmFactory
     }
 
-    private val adapter = NewsAdapter {
-        viewModel.articleClicked(article = it)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val authorizationComponent = DaggerNewsComponent
+        val chatComponent = DaggerChatComponent
             .builder()
             .addDeps(ChatFeatureDepsProvider.deps)
             .build()
 
-        authorizationComponent.inject(this)
+        chatComponent.inject(this)
 
         if (savedInstanceState == null) {
             viewModel.load()
@@ -44,42 +46,33 @@ class ChatFragment : Fragment(R.layout.fragment_news) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentNewsBinding.bind(view)
+        val binding = FragmentChatBinding.bind(view)
 
-        binding.toolbar.inflateMenu(R.menu.menu_news)
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_settings -> {
-                    true
-                }
-
-                else -> false
-            }
+        binding.btnBack.setOnClickListener{
+            viewModel.backButtonClicked()
         }
 
-        binding.newsRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.newsRecyclerView.addItemDecoration(
+        binding.recycleView.layoutManager = LinearLayoutManager(context)
+        binding.recycleView.addItemDecoration(
             SpaceDecoration(
                 spaceSize = resources.getDimensionPixelSize(
-                    com.kiparo.newsappfeaturedagger.core.ui.R.dimen.padding_10
+                  com.test.chatapp.core.ui.R.dimen.padding_10
                 )
             )
         )
-        binding.newsRecyclerView.adapter = adapter
 
-        viewModel.news.observe(viewLifecycleOwner) {
-            adapter.items = it
+        viewModel.messages.observe(viewLifecycleOwner) {
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
-            if (it is NewsScreen.Details)
-                showArticleDetails(articleDetails = it.article)
+            if (it is NextScreen.ChatListFragment)
+                showChatListFragment()
         }
     }
 
-    private fun showArticleDetails(articleDetails: ArticleDetailsArg) {
+    private fun showChatListFragment() {
         router.navigateTo(
-            fragment = articleDetailsFeatureApi.open(articleDetails),
+            fragment = chatListFeatureApi.open(),
             addToBackStack = true
         )
     }

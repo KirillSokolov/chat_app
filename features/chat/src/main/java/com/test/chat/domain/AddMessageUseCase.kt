@@ -1,8 +1,9 @@
 package com.test.chat.domain
 
-import com.test.data_api.ChatRepository
+import com.test.data.api.ChatRepository
+import javax.inject.Inject
 
-class AddMessageUseCase(private val repository: ChatRepository) {
+class AddMessageUseCase @Inject constructor(private val repository: ChatRepository) {
 
     suspend fun execute() {
         repository.addMessage()

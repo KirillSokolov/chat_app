@@ -25,12 +25,14 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        android.buildFeatures.buildConfig = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
+    buildFeatures.buildConfig = true
 
     buildTypes {
         debug {
@@ -54,9 +56,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -71,6 +71,15 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":data_api"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:ui"))
+    implementation(project(":features:authorization"))
+    implementation(project(":features:authorization_api"))
+    implementation(project(":features:chat"))
+    implementation(project(":features:chat_api"))
+    implementation(project(":features:chat_list"))
+    implementation(project(":features:chat_list_api"))
+    implementation(project(":features:user_details"))
+    implementation(project(":features:user_details_api"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
@@ -80,6 +89,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.json)
     implementation(libs.okhttp3.interceptor)
+    implementation (libs.retrofit2.kotlin.coroutines.adapter)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.ktx)

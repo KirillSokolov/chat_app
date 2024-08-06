@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.kiparo.newsappfeaturedagger.core.ui"
+    namespace = "com.test.chatapp.core.ui"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -31,7 +31,7 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
-        compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composecompiler.get()
@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain_models"))
 
     implementation(libs.core.ktx)
 

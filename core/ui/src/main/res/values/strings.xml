@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Chat App</string>
+    <string name="settings">Settings</string>
+
+    <!--Title-->
+    <string name="authorization">Authorization</string>
+    <string name="verification">Verification</string>
+    <string name="registration">Registration</string>
+    <string name="chat_list">Chat List</string>
+    <string name="chat">Chat</string>
+    <string name="user">User</string>
+    <string name="edit_user">EditUser</string>
+
+
+    <!--Button-->
+    <string name="btn_send">Send</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_registration">Register</string>
+    <string name="btn_verify">Verify</string>
+
+
+    <string name="enter_phone">Enter phone number</string>
+    <string name="enter_code">We sent you a code to verify your phone number</string>
+
+
+    <string name="user_name">Name</string>
+    <string name="user_phone">Phone</string>
+    <string name="user_nickname">Nickname</string>
+    <string name="user_birth">Birth Date</string>
+    <string name="user_zodiac">Zodiac Sign</string>
+    <string name="user_about_yourself">About Yourself</string>
+    <string name="user_city">City</string>
+
+    <!--Hint-->
+    <string name="enter_message_hint">Enter massage</string>
+    <string name="phone_hint">+7</string>
+    <string name="code_hint">111111</string>
+
+</resources>
