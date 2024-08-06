@@ -7,17 +7,18 @@ import androidx.fragment.app.viewModels
 import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
 import com.test.chatapp.authorization.R
+import com.test.chatapp.authorization.databinding.FragmentRegistrationBinding
+import com.test.data.temp.UserData
 import com.test.navigation.Router
 import javax.inject.Inject
 
-class RegistrationFragment : Fragment(R.layout.fragment_registration) {
+internal class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     @Inject
     lateinit var vmFactory: RegistrationViewModelFactory
 
     @Inject
     lateinit var router: Router
-
 
     private val viewModel by viewModels<RegistrationViewModel> {
         vmFactory
@@ -37,12 +38,12 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-      //  val binding = FragmentNewsBinding.bind(view)
+        val binding = FragmentRegistrationBinding.bind(view)
+        binding.tvPhone.text = UserData.phone
 
+        viewModel.screen.observe(viewLifecycleOwner) {
 
-       // viewModel.screen.observe(viewLifecycleOwner) {
-
-     //   }
+        }
     }
 
     private fun showChatListFragment() {

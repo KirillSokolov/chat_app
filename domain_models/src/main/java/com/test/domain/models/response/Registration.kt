@@ -1,7 +1,12 @@
 package com.test.domain.models.response
 
-data class Registration(
-    val refreshToken: String,
-    val accessToken: String,
-    val userId:Long
-)
+sealed class RegistrationResponse {
+    data class Registration(
+        val refreshToken: String,
+        val accessToken: String,
+        val userId: Long
+    ):RegistrationResponse()
+
+    class Error(val message: String, val code: Int,): RegistrationResponse()
+
+}

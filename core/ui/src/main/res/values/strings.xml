@@ -36,4 +36,11 @@
     <string name="phone_hint">+7</string>
     <string name="code_hint">111111</string>
 
+    <!--Error-->
+    <string name="error_phone">The field phone number cannot be empty!</string>
+    <string name="error_code">The field code cannot be empty!</string>
+    <string name="error_name">The field name cannot be empty!</string>
+    <string name="error_nickname">The field nickname cannot be empty!</string>
+
+
 </resources>

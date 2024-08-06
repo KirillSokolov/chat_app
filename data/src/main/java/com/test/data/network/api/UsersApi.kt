@@ -3,7 +3,9 @@ package com.test.data.network.api
 import com.test.data.network.model.AuthorizationNetwork
 import com.test.data.network.model.RefreshTokenNetwork
 import com.test.data.network.model.RegistrationNetwork
+import com.test.data.network.model.SendCodeNetwork
 import com.test.domain.models.request.CheckAuthCode
+import com.test.domain.models.request.Registration
 import com.test.domain.models.request.SendAuthCode
 import retrofit2.Response
 import retrofit2.http.Body
@@ -13,14 +15,14 @@ import retrofit2.http.POST
 interface UsersApi {
 
     @POST("users/send-auth-code/")
-    fun sendAuthCode(@Body request: SendAuthCode): Response<Boolean>
+    suspend fun sendAuthCode(@Body request: SendAuthCode): Response<SendCodeNetwork>
 
     @POST("users/check-auth-code/")
-    fun checkAuthCode(@Body request: CheckAuthCode) : Response<AuthorizationNetwork>
+    suspend fun checkAuthCode(@Body request: CheckAuthCode) : Response<AuthorizationNetwork>
 
     @POST("users/register/")
-    fun register(@Body request: SendAuthCode) : Response<RegistrationNetwork>
+    suspend fun register(@Body request: Registration) : Response<RegistrationNetwork>
 
     @POST("users/refresh-token/")
-    fun refreshToken(@Body request: SendAuthCode) : Response<RefreshTokenNetwork>
+    suspend fun refreshToken(@Body request: SendAuthCode) : Response<RefreshTokenNetwork>
 }

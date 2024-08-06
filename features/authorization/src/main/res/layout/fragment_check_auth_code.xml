@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16"
@@ -32,7 +32,7 @@
         android:textSize="@dimen/font_size_18"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <EditText
         android:id="@+id/etEnterCode"
@@ -44,6 +44,7 @@
         android:textColor="@color/onSurfaceVariant"
         android:textColorHint="@color/controlHighlight"
         android:gravity="center"
+        android:maxLength="6"
         android:fontFamily="@font/roboto_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

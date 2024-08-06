@@ -12,7 +12,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class AuthorizationModule {
+internal class AuthorizationModule {
 
     @Provides
     fun providerCheckAuthCodeViewModelFactory(checkAuthCodeUseCase: CheckAuthCodeUseCase): CheckAuthCodeViewModelFactory {

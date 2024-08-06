@@ -7,7 +7,7 @@ import dagger.Component
 
 @Component(modules = [AuthorizationModule::class], dependencies = [AuthorizationFeatureDeps::class])
 @AuthorizationScope
-interface AuthorizationComponent {
+internal interface AuthorizationComponent {
     fun inject(fragment: SendAuthCodeFragment)
     fun inject(fragment: CheckAuthCodeFragment)
     fun inject(fragment: RegistrationFragment)

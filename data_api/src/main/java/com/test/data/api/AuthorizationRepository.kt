@@ -2,9 +2,10 @@ package com.test.data.api
 
 import com.test.domain.models.request.CheckAuthCode
 import com.test.domain.models.request.SendAuthCode
-import com.test.domain.models.response.Authorization
+import com.test.domain.models.response.CheckAuthCodeResponse
+import com.test.domain.models.response.SendAuthCodeResponse
 
 interface AuthorizationRepository {
-    suspend fun checkAuthCode(checkAuthCode: CheckAuthCode): Authorization
-    suspend fun sendAuthCode(sendAuthCode: SendAuthCode):Boolean
+    suspend fun checkAuthCode(checkAuthCode: CheckAuthCode): CheckAuthCodeResponse
+    suspend fun sendAuthCode(sendAuthCode: SendAuthCode): SendAuthCodeResponse
 }
