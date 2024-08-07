@@ -1,4 +1,4 @@
-package com.test.data.api
+package com.test.data.api.repository
 
 import com.test.domain.models.request.Registration
 import com.test.domain.models.response.RegistrationResponse

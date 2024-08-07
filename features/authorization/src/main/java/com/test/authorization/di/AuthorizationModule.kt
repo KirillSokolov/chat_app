@@ -2,12 +2,16 @@ package com.test.authorization.di
 
 import com.test.authorization.domain.CheckAuthCodeUseCase
 import com.test.authorization.domain.RegistrationUseCase
+import com.test.authorization.domain.SaveRefreshTokenUseCase
+import com.test.authorization.domain.SaveUserUseCase
 import com.test.authorization.domain.SendAuthCodeUseCase
 import com.test.authorization.presentation.CheckAuthCodeViewModelFactory
 import com.test.authorization.presentation.RegistrationViewModelFactory
 import com.test.authorization.presentation.SendAuthCodeViewModelFactory
-import com.test.data.api.AuthorizationRepository
-import com.test.data.api.RegistrationRepository
+import com.test.data.api.AppDataPreference
+import com.test.data.api.repository.AuthorizationRepository
+import com.test.data.api.repository.RegistrationRepository
+import com.test.data.api.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 
@@ -20,8 +24,13 @@ internal class AuthorizationModule {
     }
 
     @Provides
-    fun providerRegistrationViewModelFactory(registrationUseCase: RegistrationUseCase): RegistrationViewModelFactory {
-        return RegistrationViewModelFactory(registrationUseCase = registrationUseCase)
+    fun providerSaveRefreshTokenUseCase(preference: AppDataPreference): SaveRefreshTokenUseCase {
+        return SaveRefreshTokenUseCase(preference = preference)
+    }
+
+    @Provides
+    fun providerRegistrationViewModelFactory(registrationUseCase: RegistrationUseCase, saveRefreshTokenUseCase: SaveRefreshTokenUseCase, saveUserUseCase:SaveUserUseCase): RegistrationViewModelFactory {
+        return RegistrationViewModelFactory(registrationUseCase = registrationUseCase, saveTokenUseCase = saveRefreshTokenUseCase, saveUserUseCase = saveUserUseCase)
     }
 
     @Provides
@@ -42,5 +51,10 @@ internal class AuthorizationModule {
     @Provides
     fun providerRegistrationUseCase(repository: RegistrationRepository): RegistrationUseCase {
         return RegistrationUseCase(repository = repository)
+    }
+
+    @Provides
+    fun providerSaveUserUseCase(repository: UserRepository): SaveUserUseCase {
+        return SaveUserUseCase(repository = repository)
     }
 }

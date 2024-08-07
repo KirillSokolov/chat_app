@@ -1,9 +1,9 @@
-package com.test.data.api
+package com.test.data.api.repository
 
 import com.test.domain.models.chat.Chat
 
 interface ChatListRepository {
-    suspend fun getAllChats(userId: Long) : List<Chat>
+    suspend fun getAllChats() : List<Chat>
     suspend fun addChat()
     suspend fun deleteChat()
 }

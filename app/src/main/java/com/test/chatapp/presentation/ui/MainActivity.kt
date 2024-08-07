@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.test.chatapp.R
 
 class MainActivity: AppCompatActivity() {
+
+
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

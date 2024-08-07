@@ -3,7 +3,7 @@ package com.test.chat.di
 import com.test.chat.domain.AddMessageUseCase
 import com.test.chat.domain.GetAllMessagesUseCase
 import com.test.chat.presentation.ChatViewModelFactory
-import com.test.data.api.ChatRepository
+import com.test.data.api.repository.ChatRepository
 import dagger.Module
 import dagger.Provides
 

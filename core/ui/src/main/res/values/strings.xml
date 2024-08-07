@@ -33,7 +33,8 @@
 
     <!--Hint-->
     <string name="enter_message_hint">Enter massage</string>
-    <string name="phone_hint">+7</string>
+    <string name="code_phone_hint">+7</string>
+    <string name="phone_hint">9219999999</string>
     <string name="code_hint">111111</string>
 
     <!--Error-->

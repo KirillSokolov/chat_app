@@ -1,4 +1,4 @@
-package com.test.data.api
+package com.test.data.api.repository
 
 import com.test.domain.models.request.CheckAuthCode
 import com.test.domain.models.request.SendAuthCode

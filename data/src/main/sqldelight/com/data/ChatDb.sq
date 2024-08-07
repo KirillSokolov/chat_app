@@ -1,0 +1,14 @@
+CREATE TABLE ChatEntity(
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    member INTEGER NOT NULL
+);
+
+getAllChats: SELECT * FROM ChatEntity;
+
+insertCharacter:
+INSERT OR REPLACE INTO ChatEntity (id, name, member)
+VALUES (?,?,?);
+
+getCharacter:
+SELECT * FROM ChatEntity WHERE id = :id;

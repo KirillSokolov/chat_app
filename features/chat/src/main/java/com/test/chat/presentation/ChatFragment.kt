@@ -1,7 +1,11 @@
 package com.test.chat.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +17,7 @@ import com.test.chatapp.news.databinding.FragmentChatBinding
 import com.test.navigation.Router
 import com.test.ui.SpaceDecoration
 import javax.inject.Inject
+
 
 class ChatFragment : Fragment(R.layout.fragment_chat) {
 
@@ -49,6 +54,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         val binding = FragmentChatBinding.bind(view)
 
         binding.btnBack.setOnClickListener{
+            hideKeyboard(binding.etNewComment)
             viewModel.backButtonClicked()
         }
 
@@ -56,7 +62,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         binding.recycleView.addItemDecoration(
             SpaceDecoration(
                 spaceSize = resources.getDimensionPixelSize(
-                  com.test.chatapp.core.ui.R.dimen.padding_10
+                    com.test.chatapp.core.ui.R.dimen.padding_10
                 )
             )
         )
@@ -68,6 +74,18 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             if (it is NextScreen.ChatListFragment)
                 showChatListFragment()
         }
+
+        showKeyboard()
+    }
+
+    private fun hideKeyboard(edit: EditText){
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.hideSoftInputFromWindow(edit.getWindowToken(), 0)
+    }
+
+    private fun showKeyboard(){
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
     private fun showChatListFragment() {

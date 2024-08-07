@@ -20,7 +20,6 @@ internal sealed class NextScreen {
 internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModel() {
 
-    private val userId = 0L;
 
     private val _chats = MutableLiveData<List<Chat>>(emptyList())
     val chats: LiveData<List<Chat>> = _chats
@@ -30,7 +29,7 @@ internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, pr
 
     fun load() {
         viewModelScope.launch {
-            val chats = getAllChatUseCase.execute(userId)
+            val chats = getAllChatUseCase.execute()
             _chats.postValue(chats)
         }
     }

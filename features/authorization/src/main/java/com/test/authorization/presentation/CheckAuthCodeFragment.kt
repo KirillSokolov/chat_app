@@ -48,6 +48,8 @@ internal class CheckAuthCodeFragment : Fragment(R.layout.fragment_check_auth_cod
             viewModel.checkAuthCode(UserData.phone, binding.etEnterCode.text.toString())
         }
 
+        binding.tvEnterCode.setText("${getString(com.test.chatapp.core.ui.R.string.enter_code)}: ${UserData.phone}")
+
         viewModel.screen.observe(viewLifecycleOwner) {
             when(it) {
                 is NextScreen.ChatListFragment -> showChatListFragment()

@@ -1,6 +1,6 @@
 package com.test.chat.domain
 
-import com.test.data.api.ChatRepository
+import com.test.data.api.repository.ChatRepository
 import com.test.domain.models.chat.Message
 import javax.inject.Inject
 

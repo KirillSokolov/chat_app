@@ -1,5 +1,6 @@
 package com.test.chat_list.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -50,6 +51,7 @@ class ChatListFragment : Fragment(R.layout.fragment_chat_list) {
 
         if (savedInstanceState == null) {
             viewModel.load()
+            requireActivity().startService(Intent(requireContext(), GetAccessTokenService::class.java))
         }
     }
 

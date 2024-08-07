@@ -1,6 +1,6 @@
 package com.test.authorization.domain
 
-import com.test.data.api.AuthorizationRepository
+import com.test.data.api.repository.AuthorizationRepository
 import com.test.domain.models.request.SendAuthCode
 import com.test.domain.models.response.SendAuthCodeResponse
 import javax.inject.Inject

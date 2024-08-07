@@ -1,6 +1,7 @@
 package com.test.authorization.presentation
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentSendAuthCodeBinding
 import com.test.navigation.Router
 import javax.inject.Inject
+
 
 internal class SendAuthCodeFragment : Fragment(R.layout.fragment_send_auth_code) {
 
@@ -39,8 +41,18 @@ internal class SendAuthCodeFragment : Fragment(R.layout.fragment_send_auth_code)
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentSendAuthCodeBinding.bind(view)
 
+        val countryPicker = binding.countryPicker
+        val countryCode = binding.etCode
+        val phoneNumber = binding.etPhone
+
+        countryPicker.setOnCountryChangeListener {
+            countryCode.setText("+${countryPicker.selectedCountryCode}")
+        }
+
+        phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
         binding.btnSend.setOnClickListener{
-            viewModel.sendAuthCode(binding.etEnterPhone.text.toString())
+            viewModel.sendAuthCode("${countryCode.text} ${phoneNumber.text}")
         }
 
        viewModel.screen.observe(viewLifecycleOwner) {

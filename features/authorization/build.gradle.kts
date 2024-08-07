@@ -59,7 +59,8 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.google.material)
-    implementation(libs.facebook.fresco)
+
+    implementation(libs.ccp)
 
     // tests
     testImplementation(libs.junit)

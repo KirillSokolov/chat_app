@@ -6,6 +6,8 @@ import com.test.chat.di.ChatFeatureDepsProvider
 import com.test.chat_list.di.ChatListFeatureDepsProvider
 import com.test.chatapp.di.DaggerAppComponent
 import com.test.chatapp.di.DaggerProvider
+import com.test.data.base.createDBDriver
+import com.test.data.preference.createDataStore
 import com.test.user.details.di.UserDetailsFeatureDepsProvider
 
 class App : Application() {
@@ -14,6 +16,8 @@ class App : Application() {
         super.onCreate()
 
         initDagger()
+        createDBDriver(this)
+        createDataStore(this)
     }
 
     private fun initDagger() {

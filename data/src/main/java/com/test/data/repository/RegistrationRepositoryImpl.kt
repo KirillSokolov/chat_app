@@ -2,9 +2,8 @@ package com.test.data.repository
 
 import com.test.data.mappers.toDomain
 import com.test.data.network.api.UsersApi
-import com.test.data.api.RegistrationRepository
+import com.test.data.api.repository.RegistrationRepository
 import com.test.domain.models.request.Registration
-import com.test.domain.models.request.SendAuthCode
 import com.test.domain.models.response.RegistrationResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -15,7 +14,7 @@ class RegistrationRepositoryImpl @Inject constructor(val api: UsersApi, private 
 
     override suspend fun registration(registration: Registration): RegistrationResponse = withContext(dispatcher){
         val response = api.register(registration)
-        return@withContext if(response.code() == 200) {
+        return@withContext if(response.isSuccessful) {
             response.body()!!.toDomain()
         }else
             RegistrationResponse.Error(response.message(), response.code())

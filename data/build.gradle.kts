@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    id(libs.plugins.sqldelight.get().pluginId)
 }
 
 android {
@@ -39,6 +40,8 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+
+
 }
 
 dependencies {
@@ -54,10 +57,24 @@ dependencies {
     implementation(libs.retrofit.converter.json)
     implementation(libs.okhttp3.interceptor)
 
+    implementation(libs.sqldelight.androidDriver)
+    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore)
+
+
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.ext.junit)
+}
+
+sqldelight {
+    databases {
+        create("DatabaseChat") {
+            packageName.set("com.data.base")
+            srcDirs.setFrom("src/main/sqldelight")
+        }
+    }
 }

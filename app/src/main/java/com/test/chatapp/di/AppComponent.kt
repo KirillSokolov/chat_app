@@ -7,11 +7,12 @@ import com.test.chat_api.ChatFeatureApi
 import com.test.chat_list.di.ChatListFeatureDeps
 import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.presentation.navigation.NavigatorFragment
-import com.test.data.api.AuthorizationRepository
-import com.test.data.api.ChatListRepository
-import com.test.data.api.ChatRepository
-import com.test.data.api.RegistrationRepository
-import com.test.data.api.UserRepository
+import com.test.data.api.AppDataPreference
+import com.test.data.api.repository.AuthorizationRepository
+import com.test.data.api.repository.ChatListRepository
+import com.test.data.api.repository.ChatRepository
+import com.test.data.api.repository.RegistrationRepository
+import com.test.data.api.repository.UserRepository
 import com.test.navigation.Router
 import com.test.user.details.di.UserDetailsFeatureDeps
 import com.test.user_details_api.UserDetailsFeatureApi
@@ -25,6 +26,7 @@ import javax.inject.Singleton
         AppModule::class,
         NetworkModule::class,
         RepositoriesModule::class,
+        DataBaseModule::class,
         FeaturesModule::class]
 )
 interface AppComponent: AuthorizationFeatureDeps, ChatFeatureDeps, ChatListFeatureDeps,
@@ -38,7 +40,7 @@ interface AppComponent: AuthorizationFeatureDeps, ChatFeatureDeps, ChatListFeatu
     override val chatFeatureApi: ChatFeatureApi
     override val chatListFeatureApi: ChatListFeatureApi
     override val userDetailsFeatureApi: UserDetailsFeatureApi
-
+    override val preference: AppDataPreference
     override val router: Router
 
     fun inject(fragment: NavigatorFragment)

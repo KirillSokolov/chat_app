@@ -4,12 +4,18 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import com.test.authorization_api.AuthorizationFeatureApi
+import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.R
 import com.test.chatapp.di.DaggerProvider
+import com.test.data.api.AppDataPreference
 import com.test.navigation.Router
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder {
@@ -23,6 +29,12 @@ class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder
     @Inject
     lateinit var authorizationApi: AuthorizationFeatureApi
 
+    @Inject
+    lateinit var chatListFeatureApi: ChatListFeatureApi
+
+    @Inject
+    lateinit var dataStore: AppDataPreference
+
    // @Inject
    // lateinit var authorizationApi: AuthorizationApi
 
@@ -35,7 +47,7 @@ class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (savedInstanceState == null) {
-            router.navigateTo(authorizationApi.open())
+            openFragment()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -49,6 +61,15 @@ class NavigatorFragment : Fragment(R.layout.fragment_navigator), NavigatorHolder
                     }
                 }
             })
+    }
+
+    private fun openFragment(){
+        lifecycleScope.launch {
+            if (dataStore.getRefreshToken().isEmpty())
+                router.navigateTo(authorizationApi.open())
+            else
+                router.navigateTo(chatListFeatureApi.open())
+        }
     }
 
     override fun onDestroy() {

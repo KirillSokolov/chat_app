@@ -86,7 +86,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/tvName"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_30"
             android:layout_marginTop="@dimen/margin_25"
@@ -124,7 +124,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/tvNickname"
+            android:id="@+id/etNickname"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_30"
             android:layout_marginTop="@dimen/margin_25"
@@ -141,7 +141,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btnVerify"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16"
