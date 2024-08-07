@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.test.chat_list_api.ChatListFeatureApi
+import com.test.domain.models.user.User
 import com.test.navigation.Router
 import com.test.user.details.R
 import com.test.user.details.databinding.FragmentUserDetailsBinding
@@ -55,6 +56,9 @@ internal class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
         }
 
         viewModel.user.observe(viewLifecycleOwner) {
+            it?.let { user->
+                showUser(user, binding)
+            }
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
@@ -68,6 +72,14 @@ internal class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
                 is NextScreen.UserDetailsFragment, NextScreen.Nothing -> {}
             }
         }
+    }
+
+    private fun showUser(user: User, binding: FragmentUserDetailsBinding) = with(binding){
+        tvPhone.text = user.phone
+        tvCity.text = user.city
+        tvName.text = user.name
+        tvBirth.text = user.birth
+        tvZodiac.text = user.zodiac
     }
 
     private fun showChatListFragment() {

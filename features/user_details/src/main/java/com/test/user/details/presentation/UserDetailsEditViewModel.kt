@@ -8,9 +8,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.domain.models.user.User
 import com.test.user.details.domain.EditUserUseCase
+import com.test.user.details.domain.GetUserUseCase
 import kotlinx.coroutines.launch
 
-internal class UserDetailsEditViewModel (private val editUserUseCase: EditUserUseCase) :
+internal class UserDetailsEditViewModel (private val editUserUseCase: EditUserUseCase, private val getUserUseCase: GetUserUseCase) :
     ViewModel() {
 
 
@@ -22,8 +23,8 @@ internal class UserDetailsEditViewModel (private val editUserUseCase: EditUserUs
 
     fun load() {
         viewModelScope.launch {
-           // val user = editUserUseCase.execute()
-           // _user.postValue(user)
+            val user = getUserUseCase.execute()
+            _user.postValue(user)
         }
     }
 
@@ -33,7 +34,7 @@ internal class UserDetailsEditViewModel (private val editUserUseCase: EditUserUs
     }
 }
 
-internal class UserDetailsEditViewModelFactory(private val editUserUseCase: EditUserUseCase) :
+internal class UserDetailsEditViewModelFactory(private val editUserUseCase: EditUserUseCase, private val getUserUseCase: GetUserUseCase) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -42,7 +43,8 @@ internal class UserDetailsEditViewModelFactory(private val editUserUseCase: Edit
         extras: CreationExtras,
     ): T {
         return UserDetailsEditViewModel(
-            editUserUseCase = editUserUseCase
+            editUserUseCase = editUserUseCase,
+            getUserUseCase = getUserUseCase
         ) as T
     }
 }

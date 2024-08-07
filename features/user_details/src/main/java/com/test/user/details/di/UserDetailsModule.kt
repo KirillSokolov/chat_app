@@ -17,8 +17,8 @@ internal class UserDetailsModule {
     }
 
     @Provides
-    fun providerUserDetailsEditViewModelFactory(editUserUseCase: EditUserUseCase): UserDetailsEditViewModelFactory {
-        return UserDetailsEditViewModelFactory(editUserUseCase = editUserUseCase)
+    fun providerUserDetailsEditViewModelFactory(editUserUseCase: EditUserUseCase, getUserUseCase: GetUserUseCase): UserDetailsEditViewModelFactory {
+        return UserDetailsEditViewModelFactory(editUserUseCase = editUserUseCase, getUserUseCase = getUserUseCase)
     }
 
     @Provides

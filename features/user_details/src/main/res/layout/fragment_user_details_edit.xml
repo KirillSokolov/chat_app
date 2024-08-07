@@ -190,7 +190,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/etBirth"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_30"
@@ -229,7 +229,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/etZodiac"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_30"

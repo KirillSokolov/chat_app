@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
+import com.test.domain.models.user.User
 import com.test.navigation.Router
 import com.test.user.details.R
 import com.test.user.details.databinding.FragmentUserDetailsBinding
@@ -51,12 +52,23 @@ internal class UserDetailsEditFragment: Fragment(R.layout.fragment_user_details_
 
 
         viewModel.user.observe(viewLifecycleOwner) {
+            it?.let {
+                showUser(it, binding)
+            }
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
              if (it is NextScreen.UserDetailsFragment)
                showUserDetailsFragment()
         }
+    }
+
+    private fun showUser(user: User, binding: FragmentUserDetailsEditBinding) = with(binding){
+        tvPhone.text = user.phone
+        tvName.text = user.name
+        etCity.setText(user.city)
+        etBirth.setText(user.birth)
+        etZodiac.setText(user.zodiac)
     }
 
     private fun showUserDetailsFragment() {

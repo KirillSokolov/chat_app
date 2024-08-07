@@ -17,7 +17,7 @@ class UserRepositoryImpl@Inject constructor(private val api: UsersApi,
                                             private val dispatcher: CoroutineDispatcher) :
     UserRepository {
     override suspend fun getUser(): User = withContext(dispatcher) {
-        return@withContext User()
+        return@withContext userDataSource.getUser()
     }
 
     override suspend fun updateLocalUser(user: User) = withContext(dispatcher){
