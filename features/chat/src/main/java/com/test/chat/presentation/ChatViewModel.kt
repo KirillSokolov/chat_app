@@ -40,7 +40,7 @@ internal class ChatViewModel (private val getAllMessagesUseCase: GetAllMessagesU
     }
 }
 
-class ChatViewModelFactory(private val getAllMessagesUseCase: GetAllMessagesUseCase, private val addMessageUseCase: AddMessageUseCase) :
+internal class ChatViewModelFactory(private val getAllMessagesUseCase: GetAllMessagesUseCase, private val addMessageUseCase: AddMessageUseCase) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")

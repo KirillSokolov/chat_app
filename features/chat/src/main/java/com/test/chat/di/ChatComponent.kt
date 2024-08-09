@@ -5,7 +5,7 @@ import dagger.Component
 
 @Component(modules = [ChatModule::class], dependencies = [ChatFeatureDeps::class])
 @ChatScope
-interface ChatComponent {
+internal interface ChatComponent {
     fun inject(fragment: ChatFragment)
 
     @Component.Builder

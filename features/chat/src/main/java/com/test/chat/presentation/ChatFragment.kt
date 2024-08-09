@@ -19,7 +19,7 @@ import com.test.ui.SpaceDecoration
 import javax.inject.Inject
 
 
-class ChatFragment : Fragment(R.layout.fragment_chat) {
+internal class ChatFragment : Fragment(R.layout.fragment_chat) {
 
     @Inject
     lateinit var vmFactory: ChatViewModelFactory

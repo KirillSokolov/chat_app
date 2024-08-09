@@ -6,7 +6,7 @@ import dagger.Component
 
 @Component(modules = [ChatListModule::class], dependencies = [ChatListFeatureDeps::class])
 @ChatListScope
-interface ChatListComponent {
+internal interface ChatListComponent {
     fun inject(fragment: ChatListFragment)
     fun inject(fragment: GetAccessTokenService)
 

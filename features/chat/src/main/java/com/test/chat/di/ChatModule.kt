@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ChatModule {
+internal class ChatModule {
 
     @Provides
     fun providerChatViewModelFactory(getAllMessagesUseCase: GetAllMessagesUseCase, addMessageUseCase: AddMessageUseCase): ChatViewModelFactory {

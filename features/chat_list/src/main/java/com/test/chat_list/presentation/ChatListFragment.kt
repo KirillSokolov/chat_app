@@ -17,7 +17,7 @@ import com.test.ui.SpaceDecoration
 import com.test.user_details_api.UserDetailsFeatureApi
 import javax.inject.Inject
 
-class ChatListFragment : Fragment(R.layout.fragment_chat_list) {
+internal class ChatListFragment : Fragment(R.layout.fragment_chat_list) {
 
     @Inject
     lateinit var vmFactory: ChatListViewModelFactory

@@ -51,7 +51,7 @@ internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, pr
     }
 }
 
-class ChatListViewModelFactory(private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
+internal class ChatListViewModelFactory(private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
