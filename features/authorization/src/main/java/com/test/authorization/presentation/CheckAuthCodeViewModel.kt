@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.CheckAuthCodeUseCase
 import com.test.domain.models.request.CheckAuthCode
+import com.test.domain.models.request.checkAuthCodeBuilder
+import com.test.domain.models.request.sendAuthCodeBuilder
 import com.test.domain.models.response.CheckAuthCodeResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,8 +21,12 @@ internal class CheckAuthCodeViewModel (private val useCase: CheckAuthCodeUseCase
     val screen: LiveData<NextScreen> = _screen
 
     fun checkAuthCode(phone: String, code: String) {
+        val checkAuthCode = checkAuthCodeBuilder {
+            this.phone = phone
+            this.code = code
+        }
         viewModelScope.launch {
-            when (val result = useCase.execute(CheckAuthCode(phone = phone, code = code))) {
+            when (val result = useCase.execute(checkAuthCode)) {
                 is CheckAuthCodeResponse.Error -> {
                     _screen.value = NextScreen.Error(msg = result.message, code = result.code)
                     _screen.value = NextScreen.Nothing

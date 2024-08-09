@@ -11,6 +11,7 @@ import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentCheckAuthCodeBinding
 import com.test.data.temp.UserData
+import com.test.domain.models.exception.IllegalArgumentCodeException
 import com.test.navigation.Router
 import javax.inject.Inject
 
@@ -45,7 +46,11 @@ internal class CheckAuthCodeFragment : Fragment(R.layout.fragment_check_auth_cod
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentCheckAuthCodeBinding.bind(view)
         binding.btnVerify.setOnClickListener{
-            viewModel.checkAuthCode(UserData.phone, binding.etEnterCode.text.toString())
+            try {
+                viewModel.checkAuthCode(UserData.phone, binding.etEnterCode.text.toString())
+            }catch (e: IllegalArgumentCodeException){
+                showError(NextScreen.Error(getString(com.test.chatapp.core.ui.R.string.error_code)))
+            }
         }
 
         binding.tvEnterCode.setText("${getString(com.test.chatapp.core.ui.R.string.enter_code)}: ${UserData.phone}")
@@ -76,7 +81,6 @@ internal class CheckAuthCodeFragment : Fragment(R.layout.fragment_check_auth_cod
 
     private fun showError(error : NextScreen.Error){
         when(error.code){
-            1 -> Toast.makeText(requireContext(), getString(com.test.chatapp.core.ui.R.string.error_code), Toast.LENGTH_SHORT).show()
             else -> Toast.makeText(requireContext(), error.msg, Toast.LENGTH_SHORT).show()
         }
     }

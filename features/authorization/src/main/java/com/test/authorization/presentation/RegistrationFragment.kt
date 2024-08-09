@@ -11,6 +11,8 @@ import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentRegistrationBinding
 import com.test.data.temp.UserData
+import com.test.domain.models.exception.IllegalArgumentNameException
+import com.test.domain.models.exception.IllegalArgumentUsernameException
 import com.test.navigation.Router
 import javax.inject.Inject
 
@@ -48,7 +50,18 @@ internal class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         binding.tvPhone.text = UserData.phone
 
         binding.btnRegister.setOnClickListener{
-            viewModel.registration(UserData.phone, binding.etName.text.toString(), binding.etNickname.text.toString())
+            try {
+                viewModel.registration(
+                    UserData.phone,
+                    binding.etName.text.toString(),
+                    binding.etNickname.text.toString()
+                )
+            }catch (e: IllegalArgumentNameException){
+                showError(NextScreen.Error(getString(com.test.chatapp.core.ui.R.string.error_name)))
+
+            }catch (e: IllegalArgumentUsernameException){
+                showError(NextScreen.Error(getString(com.test.chatapp.core.ui.R.string.error_username)))
+            }
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
@@ -63,9 +76,6 @@ internal class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     private fun showError(error : NextScreen.Error){
         when(error.code){
-            1 -> Toast.makeText(requireContext(), getString(com.test.chatapp.core.ui.R.string.error_code), Toast.LENGTH_SHORT).show()
-            2 -> Toast.makeText(requireContext(), getString(com.test.chatapp.core.ui.R.string.error_name), Toast.LENGTH_SHORT).show()
-            3 -> Toast.makeText(requireContext(), getString(com.test.chatapp.core.ui.R.string.error_nickname), Toast.LENGTH_SHORT).show()
             else -> Toast.makeText(requireContext(), error.msg, Toast.LENGTH_SHORT).show()
         }
     }

@@ -10,6 +10,7 @@ import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
 import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentSendAuthCodeBinding
+import com.test.domain.models.exception.IllegalArgumentPhoneException
 import com.test.navigation.Router
 import javax.inject.Inject
 
@@ -52,10 +53,14 @@ internal class SendAuthCodeFragment : Fragment(R.layout.fragment_send_auth_code)
         phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
         binding.btnSend.setOnClickListener{
-            viewModel.sendAuthCode("${countryCode.text} ${phoneNumber.text}")
+            try{
+                viewModel.sendAuthCode("${countryCode.text} ${phoneNumber.text}")
+            }catch (e: IllegalArgumentPhoneException){
+                showError(NextScreen.Error(getString(com.test.chatapp.core.ui.R.string.error_phone)))
+            }
         }
 
-       viewModel.screen.observe(viewLifecycleOwner) {
+        viewModel.screen.observe(viewLifecycleOwner) {
             when (it){
                 is NextScreen.CheckAuthCodeFragment -> showCheckAuthCodeFragment()
                 is NextScreen.Error -> showError(it)
@@ -66,7 +71,6 @@ internal class SendAuthCodeFragment : Fragment(R.layout.fragment_send_auth_code)
 
     private fun showError(error : NextScreen.Error){
         when(error.code){
-            1 -> Toast.makeText(requireContext(), getString(com.test.chatapp.core.ui.R.string.error_phone), Toast.LENGTH_SHORT).show()
             else -> Toast.makeText(requireContext(), error.msg, Toast.LENGTH_SHORT).show()
         }
     }

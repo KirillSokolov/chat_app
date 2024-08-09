@@ -8,3 +8,5 @@ class User(
     val birth: String = "",
     val zodiac : String = "",
     val aboutMe : String = "")
+
+

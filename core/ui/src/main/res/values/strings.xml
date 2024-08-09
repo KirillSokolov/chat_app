@@ -41,7 +41,7 @@
     <string name="error_phone">The field phone number cannot be empty!</string>
     <string name="error_code">The field code cannot be empty!</string>
     <string name="error_name">The field name cannot be empty!</string>
-    <string name="error_nickname">The field nickname cannot be empty!</string>
+    <string name="error_username">The field nickname cannot be empty!</string>
 
 
 </resources>
