@@ -1,4 +1,4 @@
-package com.test.authorization.presentation
+package com.test.authorization.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
+import com.test.authorization.presentation.viewmodel.RegistrationViewModel
+import com.test.authorization.presentation.viewmodel.RegistrationViewModelFactory
+import com.test.authorization.presentation.navigation.registration.NextScreen
 import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentRegistrationBinding
@@ -68,7 +71,7 @@ internal class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             when(it){
                 is NextScreen.ChatListFragment -> showChatListFragment()
                 is NextScreen.Error -> showError(it)
-                NextScreen.Nothing, is NextScreen.CheckAuthCodeFragment , is NextScreen.RegistrationFragment -> {}
+                NextScreen.Nothing-> {}
             }
 
         }

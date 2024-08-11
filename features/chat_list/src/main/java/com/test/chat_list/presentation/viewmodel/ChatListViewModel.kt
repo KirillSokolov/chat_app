@@ -1,4 +1,4 @@
-package com.test.chat_list.presentation
+package com.test.chat_list.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,14 +8,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.chat_list.domain.AddChatUseCase
 import com.test.chat_list.domain.GetAllChatUseCase
+import com.test.chat_list.presentation.navigation.NextScreen
 import com.test.domain.models.chat.Chat
 import kotlinx.coroutines.launch
 
-internal sealed class NextScreen {
-    data object Nothing : NextScreen()
-    class ChatFragment() : NextScreen()
-    class UserFragment() : NextScreen()
-}
 
 internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModel() {

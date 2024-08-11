@@ -1,4 +1,4 @@
-package com.test.user.details.presentation
+package com.test.user.details.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -11,6 +11,9 @@ import com.test.user.details.R
 import com.test.user.details.databinding.FragmentUserDetailsBinding
 import com.test.user.details.di.DaggerUserDetailsComponent
 import com.test.user.details.di.UserDetailsFeatureDepsProvider
+import com.test.user.details.presentation.navigation.getuser.NextScreen
+import com.test.user.details.presentation.viewmodel.UserDetailsViewModel
+import com.test.user.details.presentation.viewmodel.UserDetailsViewModelFactory
 import javax.inject.Inject
 
 internal class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
@@ -69,7 +72,7 @@ internal class UserDetailsFragment : Fragment(R.layout.fragment_user_details) {
                 is NextScreen.UserDetailsEditFragment -> {
                     showUserDetailsEditFragment()
                 }
-                is NextScreen.UserDetailsFragment, NextScreen.Nothing -> {}
+                NextScreen.Nothing -> {}
             }
         }
     }

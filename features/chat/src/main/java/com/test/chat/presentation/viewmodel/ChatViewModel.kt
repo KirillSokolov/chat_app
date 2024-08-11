@@ -1,4 +1,4 @@
-package com.test.chat.presentation
+package com.test.chat.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,13 +8,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.chat.domain.AddMessageUseCase
 import com.test.chat.domain.GetAllMessagesUseCase
+import com.test.chat.presentation.navigation.NextScreen
 import com.test.domain.models.chat.Message
 import kotlinx.coroutines.launch
-
-internal sealed class NextScreen {
-    data object Nothing : NextScreen()
-    class ChatListFragment : NextScreen()
-}
 
 internal class ChatViewModel (private val getAllMessagesUseCase: GetAllMessagesUseCase, private val addMessageUseCase: AddMessageUseCase) :
     ViewModel() {

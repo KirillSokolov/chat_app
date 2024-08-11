@@ -1,4 +1,4 @@
-package com.test.authorization.presentation
+package com.test.authorization.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,21 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.SendAuthCodeUseCase
+import com.test.authorization.presentation.navigation.sendcode.NextScreen
 import com.test.data.temp.UserData
 import com.test.domain.models.request.sendAuthCodeBuilder
 import com.test.domain.models.response.SendAuthCodeResponse
 import kotlinx.coroutines.launch
-
-private const val DEFAULT_CODE = 1
-
-
-internal sealed class NextScreen {
-    data object Nothing : NextScreen()
-    class CheckAuthCodeFragment : NextScreen()
-    class ChatListFragment : NextScreen()
-    class RegistrationFragment : NextScreen()
-    class Error(val msg: String, val code: Int = DEFAULT_CODE) : NextScreen()
-}
 
 internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) :
     ViewModel() {
@@ -38,7 +28,7 @@ internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) 
             when(val result = useCase.execute(sendAuthCode)){
                 is SendAuthCodeResponse.Authorization -> {
                     UserData.phone = phone
-                    _screen.value = NextScreen.CheckAuthCodeFragment()
+                    _screen.value = NextScreen.NextFragment()
                     _screen.value = NextScreen.Nothing
                 }
                 is SendAuthCodeResponse.Error -> {

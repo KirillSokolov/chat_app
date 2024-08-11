@@ -1,4 +1,4 @@
-package com.test.user.details.presentation
+package com.test.user.details.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,14 +8,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.domain.models.user.User
 import com.test.user.details.domain.GetUserUseCase
+import com.test.user.details.presentation.navigation.getuser.NextScreen
 import kotlinx.coroutines.launch
 
-internal sealed class NextScreen {
-    data object Nothing : NextScreen()
-    class ChatListFragment : NextScreen()
-    class UserDetailsEditFragment : NextScreen()
-    class UserDetailsFragment : NextScreen()
-}
+
 
 internal class UserDetailsViewModel (private val getUserUseCase: GetUserUseCase) :
     ViewModel() {

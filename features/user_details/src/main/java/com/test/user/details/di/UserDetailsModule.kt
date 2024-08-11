@@ -3,8 +3,8 @@ package com.test.user.details.di
 import com.test.data.api.repository.UserRepository
 import com.test.user.details.domain.EditUserUseCase
 import com.test.user.details.domain.GetUserUseCase
-import com.test.user.details.presentation.UserDetailsEditViewModelFactory
-import com.test.user.details.presentation.UserDetailsViewModelFactory
+import com.test.user.details.presentation.viewmodel.UserDetailsEditViewModelFactory
+import com.test.user.details.presentation.viewmodel.UserDetailsViewModelFactory
 import dagger.Module
 import dagger.Provides
 

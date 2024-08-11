@@ -1,4 +1,4 @@
-package com.test.authorization.presentation
+package com.test.authorization.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.RegistrationUseCase
 import com.test.authorization.domain.SaveRefreshTokenUseCase
 import com.test.authorization.domain.SaveUserUseCase
+import com.test.authorization.presentation.navigation.registration.NextScreen
 import com.test.data.temp.UserData
 import com.test.domain.models.request.registrationBuilder
 import com.test.domain.models.response.RegistrationResponse

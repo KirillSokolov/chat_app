@@ -1,4 +1,4 @@
-package com.test.user.details.presentation
+package com.test.user.details.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.domain.models.user.User
 import com.test.user.details.domain.EditUserUseCase
 import com.test.user.details.domain.GetUserUseCase
+import com.test.user.details.presentation.navigation.edituser.NextScreen
 import kotlinx.coroutines.launch
 
 internal class UserDetailsEditViewModel (private val editUserUseCase: EditUserUseCase, private val getUserUseCase: GetUserUseCase) :

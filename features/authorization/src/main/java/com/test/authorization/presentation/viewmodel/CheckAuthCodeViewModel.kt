@@ -1,4 +1,4 @@
-package com.test.authorization.presentation
+package com.test.authorization.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,11 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.authorization.domain.CheckAuthCodeUseCase
-import com.test.domain.models.request.CheckAuthCode
+import com.test.authorization.presentation.navigation.checkcode.NextScreen
 import com.test.domain.models.request.checkAuthCodeBuilder
-import com.test.domain.models.request.sendAuthCodeBuilder
 import com.test.domain.models.response.CheckAuthCodeResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 internal class CheckAuthCodeViewModel (private val useCase: CheckAuthCodeUseCase) :

@@ -1,4 +1,4 @@
-package com.test.user.details.presentation
+package com.test.user.details.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment
 import com.test.domain.models.user.User
 import com.test.navigation.Router
 import com.test.user.details.R
-import com.test.user.details.databinding.FragmentUserDetailsBinding
 import com.test.user.details.databinding.FragmentUserDetailsEditBinding
 import com.test.user.details.di.DaggerUserDetailsComponent
-import com.test.user.details.di.UserDetailsFeatureDeps
 import com.test.user.details.di.UserDetailsFeatureDepsProvider
+import com.test.user.details.presentation.navigation.edituser.NextScreen
+import com.test.user.details.presentation.viewmodel.UserDetailsEditViewModel
+import com.test.user.details.presentation.viewmodel.UserDetailsEditViewModelFactory
 import javax.inject.Inject
 
 internal class UserDetailsEditFragment: Fragment(R.layout.fragment_user_details_edit) {
@@ -58,8 +59,10 @@ internal class UserDetailsEditFragment: Fragment(R.layout.fragment_user_details_
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
-             if (it is NextScreen.UserDetailsFragment)
-               showUserDetailsFragment()
+            when(it){
+                NextScreen.Nothing -> {}
+                is NextScreen.UserDetailsFragment -> showUserDetailsFragment()
+            }
         }
     }
 

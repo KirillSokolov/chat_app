@@ -1,4 +1,4 @@
-package com.test.authorization.presentation
+package com.test.authorization.presentation.ui
 
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
+import com.test.authorization.presentation.viewmodel.SendAuthCodeViewModel
+import com.test.authorization.presentation.viewmodel.SendAuthCodeViewModelFactory
+import com.test.authorization.presentation.navigation.sendcode.NextScreen
 import com.test.chatapp.authorization.R
 import com.test.chatapp.authorization.databinding.FragmentSendAuthCodeBinding
 import com.test.domain.models.exception.IllegalArgumentPhoneException
@@ -64,7 +67,7 @@ internal class SendAuthCodeFragment : Fragment(R.layout.fragment_send_auth_code)
             when (it){
                 is NextScreen.CheckAuthCodeFragment -> showCheckAuthCodeFragment()
                 is NextScreen.Error -> showError(it)
-                is NextScreen.RegistrationFragment, is NextScreen.ChatListFragment, NextScreen.Nothing -> {}
+                NextScreen.Nothing -> {}
             }
         }
     }

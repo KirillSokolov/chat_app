@@ -1,4 +1,4 @@
-package com.test.chat_list.presentation
+package com.test.chat_list.presentation.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.chat_api.ChatFeatureApi
 import com.test.chat_list.di.ChatListFeatureDepsProvider
 import com.test.chat_list.di.DaggerChatListComponent
+import com.test.chat_list.presentation.GetAccessTokenService
+import com.test.chat_list.presentation.navigation.NextScreen
+import com.test.chat_list.presentation.viewmodel.ChatListViewModel
+import com.test.chat_list.presentation.viewmodel.ChatListViewModelFactory
+import com.test.chat_list.presentation.viewmodel.NextScreen
 import com.test.chatapp.chat.list.R
 import com.test.chatapp.chat.list.databinding.FragmentChatListBinding
 import com.test.navigation.Router

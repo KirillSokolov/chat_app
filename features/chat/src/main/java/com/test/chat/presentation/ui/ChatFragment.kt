@@ -1,16 +1,19 @@
-package com.test.chat.presentation
+package com.test.chat.presentation.ui
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.chat.di.ChatFeatureDepsProvider
 import com.test.chat.di.DaggerChatComponent
+import com.test.chat.presentation.navigation.NextScreen
+import com.test.chat.presentation.viewmodel.ChatViewModel
+import com.test.chat.presentation.viewmodel.ChatViewModelFactory
+import com.test.chat.presentation.viewmodel.NextScreen
 import com.test.chat_list_api.ChatListFeatureApi
 import com.test.chatapp.news.R
 import com.test.chatapp.news.databinding.FragmentChatBinding
@@ -71,8 +74,10 @@ internal class ChatFragment : Fragment(R.layout.fragment_chat) {
         }
 
         viewModel.screen.observe(viewLifecycleOwner) {
-            if (it is NextScreen.ChatListFragment)
-                showChatListFragment()
+            when(it){
+                is NextScreen.ChatListFragment -> showChatListFragment()
+                NextScreen.Nothing -> {}
+            }
         }
 
         showKeyboard()

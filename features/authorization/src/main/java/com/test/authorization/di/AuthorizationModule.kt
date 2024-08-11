@@ -5,9 +5,9 @@ import com.test.authorization.domain.RegistrationUseCase
 import com.test.authorization.domain.SaveRefreshTokenUseCase
 import com.test.authorization.domain.SaveUserUseCase
 import com.test.authorization.domain.SendAuthCodeUseCase
-import com.test.authorization.presentation.CheckAuthCodeViewModelFactory
-import com.test.authorization.presentation.RegistrationViewModelFactory
-import com.test.authorization.presentation.SendAuthCodeViewModelFactory
+import com.test.authorization.presentation.viewmodel.CheckAuthCodeViewModelFactory
+import com.test.authorization.presentation.viewmodel.RegistrationViewModelFactory
+import com.test.authorization.presentation.viewmodel.SendAuthCodeViewModelFactory
 import com.test.data.api.AppDataPreference
 import com.test.data.api.repository.AuthorizationRepository
 import com.test.data.api.repository.RegistrationRepository

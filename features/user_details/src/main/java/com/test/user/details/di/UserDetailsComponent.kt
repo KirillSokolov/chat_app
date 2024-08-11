@@ -1,7 +1,7 @@
 package com.test.user.details.di
 
-import com.test.user.details.presentation.UserDetailsEditFragment
-import com.test.user.details.presentation.UserDetailsFragment
+import com.test.user.details.presentation.ui.UserDetailsEditFragment
+import com.test.user.details.presentation.ui.UserDetailsFragment
 import dagger.Component
 
 @Component(modules = [UserDetailsModule::class], dependencies = [UserDetailsFeatureDeps::class])

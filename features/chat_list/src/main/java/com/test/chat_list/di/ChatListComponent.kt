@@ -1,6 +1,6 @@
 package com.test.chat_list.di
 
-import com.test.chat_list.presentation.ChatListFragment
+import com.test.chat_list.presentation.ui.ChatListFragment
 import com.test.chat_list.presentation.GetAccessTokenService
 import dagger.Component
 

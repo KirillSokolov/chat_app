@@ -1,6 +1,6 @@
 package com.test.chat.di
 
-import com.test.chat.presentation.ChatFragment
+import com.test.chat.presentation.ui.ChatFragment
 import dagger.Component
 
 @Component(modules = [ChatModule::class], dependencies = [ChatFeatureDeps::class])
