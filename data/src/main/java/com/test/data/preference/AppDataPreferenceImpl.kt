@@ -21,9 +21,9 @@ class AppDataPreferenceImpl @Inject constructor(private val dataStore : DataStor
         }.first()
     }
 
-    override suspend fun setRefreshToken(refreshToken: String ): Unit = withContext(dispatcher) {
+    override suspend fun setRefreshToken(token: String ): Unit = withContext(dispatcher) {
          dataStore.edit { preferences ->
-            preferences[REFRESH_TOKEN] = refreshToken
+            preferences[REFRESH_TOKEN] = token
         }
     }
 }

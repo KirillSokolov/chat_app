@@ -43,5 +43,39 @@
     <string name="error_name">The field name cannot be empty!</string>
     <string name="error_username">The field nickname cannot be empty!</string>
 
+    <string name="sweet_bite">Sweet bite</string>
+    <string name="image_description">Starting logo image</string>
+    <string name="get_started">Get Started</string>
+    <string name="enjoy">Enjoy</string>
+    <string name="your_meal">Your meal</string>
+    <string name="login">Login</string>
+    <string name="not_a_member_register">Not a member? {{Register}} here</string>
+    <string name="register">Register</string>
+    <string name="forgot_password_reset">Forgot Password? {{Reset}} here</string>
+    <string name="email_placeholder">Email</string>
+    <string name="password_placeholder">Password</string>
+    <string name="name_placeholder">First name</string>
+    <string name="signup">Signup</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="already_member_login">Already Member? {{Login}} here</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="menu">Menu</string>
+    <string name="promotions_title">Promotions</string>
+    <string name="today_offer">Today\'s Offer</string>
+    <string name="free_box_of_fries">Free Box of {{Fries!}}</string>
+    <string name="on_all_orders_above">on all orders above {{$150}}</string>
+    <string name="usd">$%1s</string>
+    <string name="all">All</string>
+    <string name="profile">profile</string>
+    <string name="cart">cart</string>
+    <string name="promotion">promotion</string>
+    <string name="cart_screen_title">Cart</string>
+    <string name="profile_screen_title">Profile</string>
+    <string name="checkout">Checkout</string>
+    <string name="logout">Logout</string>
+    <string name="today_offer_screen_title">Today\'s offer</string>
+    <string name="promocode">Promocode: %1$s</string>
+    <string name="add_to_cart">Add To Cart</string>
+
 
 </resources>

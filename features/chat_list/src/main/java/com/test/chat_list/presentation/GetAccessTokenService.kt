@@ -35,7 +35,7 @@ class GetAccessTokenService @Inject constructor(): Service(){
             .addDeps(ChatListFeatureDepsProvider.deps)
             .build()
 
-        serviceComponent.inject(this)
+        //serviceComponent.inject(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

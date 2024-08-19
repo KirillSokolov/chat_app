@@ -1,14 +1,11 @@
 package com.test.user.details.di
 
-import com.test.user.details.presentation.ui.UserDetailsEditFragment
-import com.test.user.details.presentation.ui.UserDetailsFragment
 import dagger.Component
 
 @Component(modules = [UserDetailsModule::class], dependencies = [UserDetailsFeatureDeps::class])
 @UserDetailsScope
 internal interface UserDetailsComponent {
-    fun inject(fragment: UserDetailsFragment)
-    fun inject(fragment: UserDetailsEditFragment)
+
 
     @Component.Builder
     interface Builder{

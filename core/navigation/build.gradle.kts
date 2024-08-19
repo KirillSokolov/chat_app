@@ -32,8 +32,6 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
+    implementation(libs.navigation.runtime.ktx)
 
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.fragment.ktx)
 }

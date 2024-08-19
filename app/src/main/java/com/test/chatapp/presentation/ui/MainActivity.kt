@@ -1,23 +1,27 @@
 package com.test.chatapp.presentation.ui
 
-import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
-import com.test.chatapp.R
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.core.view.WindowCompat
+import com.test.chatapp.presentation.navigation.ChatHost
+import com.test.ui.design.theme.ChatAppTheme
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : ComponentActivity() {
 
-
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        setContentView(R.layout.activity_main)
-        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-            }
-        })
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        setContent {
+            ChatApp()
+        }
+    }
+}
+
+@Composable
+fun ChatApp() {
+    ChatAppTheme {
+        ChatHost()
     }
 }

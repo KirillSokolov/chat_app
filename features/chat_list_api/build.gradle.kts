@@ -31,5 +31,4 @@ android {
 
 dependencies {
     implementation(libs.core.ktx)
-    implementation(libs.androidx.fragment.ktx)
 }

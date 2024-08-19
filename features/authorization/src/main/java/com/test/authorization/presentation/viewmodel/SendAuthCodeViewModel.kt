@@ -28,7 +28,7 @@ internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) 
             when(val result = useCase.execute(sendAuthCode)){
                 is SendAuthCodeResponse.Authorization -> {
                     UserData.phone = phone
-                    _screen.value = NextScreen.NextFragment()
+                    _screen.value = NextScreen.CheckAuthCodeFragment()
                     _screen.value = NextScreen.Nothing
                 }
                 is SendAuthCodeResponse.Error -> {

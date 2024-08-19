@@ -6,7 +6,6 @@ import com.test.chat.di.ChatFeatureDeps
 import com.test.chat_api.ChatFeatureApi
 import com.test.chat_list.di.ChatListFeatureDeps
 import com.test.chat_list_api.ChatListFeatureApi
-import com.test.chatapp.presentation.navigation.NavigatorFragment
 import com.test.data.api.AppDataPreference
 import com.test.data.api.repository.AuthorizationRepository
 import com.test.data.api.repository.ChatListRepository
@@ -36,14 +35,14 @@ interface AppComponent: AuthorizationFeatureDeps, ChatFeatureDeps, ChatListFeatu
     override val registrationRepository: RegistrationRepository
     override val chatRepository: ChatRepository
     override val userRepository: UserRepository
-    override val chatListRepository: ChatListRepository
-    override val chatFeatureApi: ChatFeatureApi
-    override val chatListFeatureApi: ChatListFeatureApi
-    override val userDetailsFeatureApi: UserDetailsFeatureApi
+  //  override val chatListRepository: ChatListRepository
+   // override val chatFeatureApi: ChatFeatureApi
+   // override val chatListFeatureApi: ChatListFeatureApi
+   // override val userDetailsFeatureApi: UserDetailsFeatureApi
     override val preference: AppDataPreference
     override val router: Router
 
-    fun inject(fragment: NavigatorFragment)
+  //  fun inject(fragment: NavigatorFragment)
 
     @Component.Builder
     interface Builder {
