@@ -7,6 +7,8 @@ import androidx.navigation.compose.rememberNavController
 import com.test.authorization.presentation.ui.start
 import com.test.navigation.StartDestination
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.test.authorization.presentation.navigation.authentication
+import com.test.navigation.authNavigator
 import com.test.navigation.startNavigator
 
 
@@ -20,7 +22,7 @@ fun ChatHost(
         startDestination = StartDestination.route
     ) {
         start(navController.startNavigator())
-       // authentication(navController.authNavigator())
+        authentication(navController.authNavigator())
      //   bottom_menu(navController.bottomNavigator())
     }
 }

@@ -34,38 +34,43 @@ fun NavHostController.startNavigator(): StartNavigator =
         }
     }
 
-//fun NavHostController.authNavigator()
-//        : AuthNavigator = object : AuthNavigator {
-//    override fun onNavigateAfterLogin() {
-//        popBackStack()
-//        navigateSingleTopTo(BOTTOM_MENU_ROUTE)
-//    }
+fun NavHostController.authNavigator()
+        : AuthNavigator = object : AuthNavigator {
+    override fun onNavigateAfterLogin() {
+        popBackStack()
+        //navigateToCheckCode()
+       // navigateSingleTopTo(BOTTOM_MENU_ROUTE)
+    }
+
+    override fun onNavigateToRegister() {
+        navigateToRegister()
+    }
+
+    override fun onNavigateToCheckCode() {
+        navigateToCheckCode()
+    }
+
+    override fun onNavigateToReset() {
+        navigateToReset()
+    }
+
+    override fun onNavigateUp() {
+        popBackStack()
+    }
+}
 //
-//    override fun onNavigateToRegister() {
-//        navigateToRegister()
-//    }
-//
-//    override fun onNavigateToReset() {
-//        navigateToReset()
-//    }
-//
-//    override fun onNavigateUp() {
-//        popBackStack()
-//    }
-//}
-//
-//fun NavHostController.bottomNavigator(): BottomMenuNavigator =
-//    object : BottomMenuNavigator {
-//        override fun onNavigateToDetails(menuItemId: String) {
-//            navigateToDetails(menuItemId = menuItemId)
-//        }
-//
-//        override fun onLogout() {
-//            popBackStack()
-//            navigateToAuth()
-//        }
-//
-//        override fun onNavigateUp() {
-//            popBackStack()
-//        }
-//    }
+fun NavHostController.bottomNavigator(): BottomMenuNavigator =
+    object : BottomMenuNavigator {
+        override fun onNavigateToDetails(menuItemId: String) {
+           // navigateToDetails(menuItemId = menuItemId)
+        }
+
+        override fun onLogout() {
+            popBackStack()
+            navigateToAuth()
+        }
+
+        override fun onNavigateUp() {
+            popBackStack()
+        }
+    }

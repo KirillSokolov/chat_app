@@ -17,7 +17,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.test.chatapp.core.ui.R
 import com.test.ui.design.theme.*
 
@@ -34,10 +33,10 @@ fun FormField(
 ) {
     TextField(
         value = value,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(corner8),
         modifier =
         modifier
-            .height(56.dp),
+            .height(itemHeight56),
         placeholder = {
             Text(
                 text = stringResource(id = placeholderResId),

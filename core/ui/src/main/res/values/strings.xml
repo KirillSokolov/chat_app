@@ -10,6 +10,7 @@
     <string name="chat">Chat</string>
     <string name="user">User</string>
     <string name="edit_user">EditUser</string>
+    <string name="login">Login</string>
 
 
     <!--Button-->
@@ -48,11 +49,11 @@
     <string name="get_started">Get Started</string>
     <string name="enjoy">Enjoy</string>
     <string name="your_meal">Your meal</string>
-    <string name="login">Login</string>
     <string name="not_a_member_register">Not a member? {{Register}} here</string>
     <string name="register">Register</string>
     <string name="forgot_password_reset">Forgot Password? {{Reset}} here</string>
     <string name="email_placeholder">Email</string>
+    <string name="phone_placeholder">Phone</string>
     <string name="password_placeholder">Password</string>
     <string name="name_placeholder">First name</string>
     <string name="signup">Signup</string>
