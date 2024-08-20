@@ -1,6 +1,7 @@
 package com.test.ui.design.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -57,6 +58,7 @@ val typography = Typography(
     bodyLarge = TextStyle(
         fontSize = 15.sp,
         fontFamily = popinsFamily,
+        color = Color.Black,
         fontWeight = FontWeight.W400),
     bodySmall = TextStyle(
         fontSize = 10.sp,

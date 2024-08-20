@@ -8,12 +8,13 @@ data class SendAuthCode(
 
 class SendAuthCodeBuilder {
     var phone: String = ""
+    var code: String = ""
 
     fun setPhone(value: String) = apply { phone = value }
 
     fun build(): SendAuthCode{
         if (phone.isEmpty()) throw IllegalArgumentPhoneException()
-        return SendAuthCode(phone)
+        return SendAuthCode("$code $phone")
     }
 
 }

@@ -11,9 +11,10 @@ import com.test.chat_list.domain.GetAllChatUseCase
 import com.test.chat_list.presentation.navigation.NextScreen
 import com.test.domain.models.chat.Chat
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
+internal class ChatListViewModel (private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModel() {
 
 
@@ -32,7 +33,7 @@ internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, pr
 
     fun addChatClicked() {
         viewModelScope.launch {
-            addChatUseCase.execute()
+           // addChatUseCase.execute()
         }
     }
 
@@ -47,7 +48,7 @@ internal class ChatListViewModel (private val addChatUseCase: AddChatUseCase, pr
     }
 }
 
-internal class ChatListViewModelFactory(private val addChatUseCase: AddChatUseCase, private val getAllChatUseCase: GetAllChatUseCase) :
+internal class ChatListViewModelFactory @Inject constructor(private val getAllChatUseCase: GetAllChatUseCase) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -56,7 +57,6 @@ internal class ChatListViewModelFactory(private val addChatUseCase: AddChatUseCa
         extras: CreationExtras,
     ): T {
         return ChatListViewModel(
-            addChatUseCase = addChatUseCase,
             getAllChatUseCase = getAllChatUseCase
         ) as T
     }

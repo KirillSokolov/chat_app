@@ -13,6 +13,7 @@ val padding8 = 8.dp
 val padding10 = 10.dp
 val padding16 = 16.dp
 val padding34 = 34.dp
+val padding55 = 55.dp
 
 val corner8 = 8.dp
 

@@ -32,14 +32,17 @@ fun NavHostController.startNavigator(): StartNavigator =
             popBackStack()
             navigateToAuth()
         }
+
+        override fun onNavigateHome() {
+            navigateSingleTopTo(BOTTOM_MENU_ROUTE)
+        }
     }
 
 fun NavHostController.authNavigator()
         : AuthNavigator = object : AuthNavigator {
     override fun onNavigateAfterLogin() {
         popBackStack()
-        //navigateToCheckCode()
-       // navigateSingleTopTo(BOTTOM_MENU_ROUTE)
+        navigateSingleTopTo(BOTTOM_MENU_ROUTE)
     }
 
     override fun onNavigateToRegister() {
@@ -61,16 +64,28 @@ fun NavHostController.authNavigator()
 //
 fun NavHostController.bottomNavigator(): BottomMenuNavigator =
     object : BottomMenuNavigator {
-        override fun onNavigateToDetails(menuItemId: String) {
-           // navigateToDetails(menuItemId = menuItemId)
+        override fun onNavigateToDetails() {
+            navigateToDetails()
+        }
+
+        override fun onNavigateToEdit() {
+            TODO("Not yet implemented")
+        }
+
+        override fun onNavigateToAbout() {
+            TODO("Not yet implemented")
         }
 
         override fun onLogout() {
             popBackStack()
-            navigateToAuth()
+            navigateToLogout()
         }
 
-        override fun onNavigateUp() {
-            popBackStack()
+        override fun onChatList() {
+            navigateToChatList()
+        }
+
+        override fun onChat() {
+            navigateToChat()
         }
     }

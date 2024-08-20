@@ -11,8 +11,8 @@ import dagger.Provides
 internal class ChatListModule {
 
     @Provides
-    fun providerChatListViewModelFactory(addChatUseCase: AddChatUseCase, getAllChatUseCase: GetAllChatUseCase): ChatListViewModelFactory {
-        return ChatListViewModelFactory(addChatUseCase = addChatUseCase, getAllChatUseCase = getAllChatUseCase)
+    fun providerChatListViewModelFactory(getAllChatUseCase: GetAllChatUseCase): ChatListViewModelFactory {
+        return ChatListViewModelFactory(getAllChatUseCase = getAllChatUseCase)
     }
 
     @Provides

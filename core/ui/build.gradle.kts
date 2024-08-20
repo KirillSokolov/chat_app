@@ -45,6 +45,7 @@ android {
 dependencies {
 
     implementation(project(":domain_models"))
+    implementation(project(":core:navigation"))
 
     implementation(libs.core.ktx)
 

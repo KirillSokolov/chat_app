@@ -12,6 +12,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 val REFRESH_TOKEN = stringPreferencesKey("refresh_token")
+val USER_PHOTO = stringPreferencesKey("user_photo")
 
 class AppDataPreferenceImpl @Inject constructor(private val dataStore : DataStore<Preferences>, val dispatcher: CoroutineDispatcher): AppDataPreference {
 
@@ -24,6 +25,18 @@ class AppDataPreferenceImpl @Inject constructor(private val dataStore : DataStor
     override suspend fun setRefreshToken(token: String ): Unit = withContext(dispatcher) {
          dataStore.edit { preferences ->
             preferences[REFRESH_TOKEN] = token
+        }
+    }
+
+    override suspend fun getUserPhoto(): String = withContext(dispatcher){
+        return@withContext dataStore.data.map { preferences ->
+            preferences[USER_PHOTO] ?: ""
+        }.first()
+    }
+
+    override suspend fun setUserPhoto(uri: String):Unit = withContext(dispatcher){
+        dataStore.edit { preferences ->
+            preferences[USER_PHOTO] = uri
         }
     }
 }

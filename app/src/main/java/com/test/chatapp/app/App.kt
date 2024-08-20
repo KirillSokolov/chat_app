@@ -19,7 +19,6 @@ class App : Application() {
         createDBDriver(this)
         createDataStore(this)
     }
-
     private fun initDagger() {
         val appComponent = DaggerAppComponent
             .builder()

@@ -2,6 +2,7 @@
 
 # app config
 compileSdk = "34"
+constraintlayoutComposeVersion = "1.0.1"
 minSdk = "26"
 otptextfield = "1.0.2"
 targetSdk = "34"
@@ -47,10 +48,12 @@ kotlinx-coroutines-test = "1.7.3"
 androidx-test-ext-junit = "1.1.5"
 navigationRuntimeKtx = "2.7.7"
 foundationAndroid = "1.6.8"
+constraintlayout = "2.1.4"
 
 [libraries]
 
 # core
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutComposeVersion" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 country-picker = { module = "com.github.arpitkatiyar1999:Country-Picker", version.ref = "countryPicker" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx_immutable" }
@@ -102,6 +105,7 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation-compose" }
 navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 [plugins]
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }

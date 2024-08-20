@@ -8,10 +8,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.test.authorization.presentation.viewmodel.SignInUiState
+import com.arpitkatiyarprojects.countrypicker.models.CountryDetails
+import com.test.authorization.presentation.viewmodel.SendCodeState
 import com.test.ui.design.theme.*
 import com.test.ui.widgets.BackgroundColumn
 import com.test.ui.widgets.CountryCode
@@ -21,17 +26,21 @@ import com.test.ui.widgets.PhoneField
 import com.test.ui.widgets.StatusBarInsetsSpacer
 import com.test.ui.widgets.SweetBite
 import com.test.ui.widgets.TextWithSingleLink
+import com.test.ui.widgets.inputPhoneType
 
 @Composable
 fun SendCodeScreen(
-    uiState: SignInUiState,
-    onCodeChange: (String) -> Unit,
-    onPhoneChange: (String) -> Unit,
+    uiState: SendCodeState,
+    countryDetails: (country: CountryDetails) -> Unit,
+    onPhoneChange: (TextFieldValue) -> Unit,
     onLoginClick: () -> Unit,
     onRegisterClick: () -> Unit,
     onResetClick: () -> Unit
 ) {
     BackgroundColumn {
+
+
+
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
         SweetBite(
@@ -49,9 +58,11 @@ fun SendCodeScreen(
         )
         Spacer(modifier = Modifier.height(space32))
 
+
+
         Row {
 
-            CountryCode{}
+            CountryCode(countryDetails = countryDetails)
             Spacer(modifier = Modifier.width(space8))
 
             PhoneField(
@@ -93,11 +104,14 @@ fun SendCodeScreen(
 @androidx.compose.runtime.Composable
 fun SendCodeScreenPreview() {
     ChatAppTheme {
-        SendCodeScreen(uiState = SignInUiState(
+        SendCodeScreen(uiState = SendCodeState(
             code = "+7",
-            phone = ""),
+            phone = TextFieldValue(
+                text = "",
+                selection = TextRange(0)
+            )),
             onLoginClick = {}, onRegisterClick = {}, onResetClick = {},
-            onCodeChange = {},
+            countryDetails = {},
             onPhoneChange = {})
     }
 }

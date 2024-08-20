@@ -19,8 +19,8 @@ import dagger.Provides
 internal class AuthorizationModule {
 
     @Provides
-    fun providerCheckAuthCodeViewModelFactory(checkAuthCodeUseCase: CheckAuthCodeUseCase): CheckAuthCodeViewModelFactory {
-        return CheckAuthCodeViewModelFactory(checkAuthCodeUseCase = checkAuthCodeUseCase)
+    fun providerCheckAuthCodeViewModelFactory(checkAuthCodeUseCase: CheckAuthCodeUseCase, saveRefreshTokenUseCase: SaveRefreshTokenUseCase): CheckAuthCodeViewModelFactory {
+        return CheckAuthCodeViewModelFactory(checkAuthCodeUseCase = checkAuthCodeUseCase, saveTokenUseCase = saveRefreshTokenUseCase)
     }
 
     @Provides

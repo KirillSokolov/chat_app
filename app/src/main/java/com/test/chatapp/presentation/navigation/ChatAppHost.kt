@@ -8,7 +8,9 @@ import com.test.authorization.presentation.ui.start
 import com.test.navigation.StartDestination
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.test.authorization.presentation.navigation.authentication
+import com.test.chat_list.presentation.navigation.bottom_menu
 import com.test.navigation.authNavigator
+import com.test.navigation.bottomNavigator
 import com.test.navigation.startNavigator
 
 
@@ -23,6 +25,6 @@ fun ChatHost(
     ) {
         start(navController.startNavigator())
         authentication(navController.authNavigator())
-     //   bottom_menu(navController.bottomNavigator())
+        bottom_menu(navController.bottomNavigator())
     }
 }

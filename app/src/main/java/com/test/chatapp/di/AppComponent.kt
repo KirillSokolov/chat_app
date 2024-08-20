@@ -42,6 +42,7 @@ interface AppComponent: AuthorizationFeatureDeps, ChatFeatureDeps, ChatListFeatu
     override val preference: AppDataPreference
     override val router: Router
 
+
   //  fun inject(fragment: NavigatorFragment)
 
     @Component.Builder

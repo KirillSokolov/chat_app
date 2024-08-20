@@ -20,6 +20,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import com.test.chatapp.core.ui.R
@@ -28,11 +29,26 @@ import com.test.ui.design.theme.itemHeight24
 import com.test.ui.design.theme.itemHeight56
 import com.test.ui.design.theme.itemWidth24
 
+
+private const val phoneSize = 10
+
+fun inputPhoneType(textField: TextFieldValue): TextFieldValue {
+    val selection = textField.selection
+
+    val phone = textField.text.filter{it.isDigit()}
+    return if (phone.length > phoneSize) {
+        textField.copy(text = phone.dropLast(phone.length - phoneSize), selection = selection)
+    }else{
+        textField.copy(text = phone, selection = selection)
+    }
+}
+
+
 @Composable
 fun PhoneField(
     modifier: Modifier = Modifier,
-    value: String,
-    onValueChange: (String) -> Unit,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
     @StringRes placeholderResId: Int,
     @DrawableRes leadingIconResId: Int,
     hasError: Boolean = false,
@@ -52,8 +68,9 @@ fun PhoneField(
                 color = MaterialTheme.colorScheme.onSurface
             )
         },
+
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-        onValueChange = onValueChange,
+        onValueChange =  onValueChange,
         leadingIcon = {
             Image(
                 modifier = androidx.compose.ui.Modifier

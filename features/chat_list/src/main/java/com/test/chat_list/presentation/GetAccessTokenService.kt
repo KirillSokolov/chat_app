@@ -35,7 +35,7 @@ class GetAccessTokenService @Inject constructor(): Service(){
             .addDeps(ChatListFeatureDepsProvider.deps)
             .build()
 
-        //serviceComponent.inject(this)
+        serviceComponent.inject(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -50,7 +50,11 @@ class GetAccessTokenService @Inject constructor(): Service(){
 
     private suspend fun getToken(){
         val refreshToken = dataStore.getRefreshToken()
-        userRepository.getAccessToken(RefreshToken(refresh_token = refreshToken))
+
+        if(refreshToken.isNotEmpty()){
+            userRepository.getAccessToken(RefreshToken(refresh_token = refreshToken))
+        }
+
         delay(Duration.ofMinutes(9L).toMillis())
         getToken()
     }

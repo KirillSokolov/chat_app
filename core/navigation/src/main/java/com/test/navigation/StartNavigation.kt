@@ -9,5 +9,7 @@ data object StartDestination : ChatAppDestination{
 
 interface StartNavigator{
     fun onNavigateAfterStarted()
+    fun onNavigateHome()
+
 }
 

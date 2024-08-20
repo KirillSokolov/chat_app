@@ -29,11 +29,13 @@ fun FormField(
     @StringRes placeholderResId: Int,
     @DrawableRes leadingIconResId: Int,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    enabled: Boolean = true,
     hasError: Boolean = false
 ) {
     TextField(
         value = value,
         shape = RoundedCornerShape(corner8),
+        enabled = enabled,
         modifier =
         modifier
             .height(itemHeight56),

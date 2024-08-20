@@ -47,10 +47,12 @@ dependencies {
     implementation(project(":core:navigation"))
     api(project(":core:ui"))
     implementation(project(":data_api"))
+    implementation(project(":data"))
     implementation(project(":domain_models"))
     implementation(project(":features:chat_list_api"))
     implementation(project(":features:chat_api"))
     implementation(project(":features:user_details_api"))
+    implementation(project(":features:user_details"))
 
 
     implementation(libs.dagger)
@@ -73,7 +75,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.coil.compose)
-
+    implementation(libs.androidx.constraintlayout.compose)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)

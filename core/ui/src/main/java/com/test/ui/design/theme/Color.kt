@@ -18,3 +18,11 @@ val BrightGrey = Color(0xFFEDEBF2)
 val Adhesion = Color(0xFFA09BAC)
 val Raven = Color(0xFF0B0A0D)
 val Shadow = Color(0x40000000)
+
+val Focus_Border = Color(0xFF89BDED)
+val unFocus_Border = Color(0xFFE4E7EC)
+
+val Focus_Text = Color(0xFFE4E7EC)
+val unFocus_Text = Color(0xFF89BDED)
+
+val Error_Color = Color(0xFFF04438)

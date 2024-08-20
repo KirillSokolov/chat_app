@@ -18,6 +18,7 @@
     <string name="btn_save">Save</string>
     <string name="btn_registration">Register</string>
     <string name="btn_verify">Verify</string>
+    <string name="btn_add_chat">Add new chat</string>
 
 
     <string name="enter_phone">Enter phone number</string>
@@ -76,7 +77,6 @@
     <string name="logout">Logout</string>
     <string name="today_offer_screen_title">Today\'s offer</string>
     <string name="promocode">Promocode: %1$s</string>
-    <string name="add_to_cart">Add To Cart</string>
 
 
 </resources>
