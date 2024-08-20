@@ -14,6 +14,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+private const val BASE_API_URL="https://plannerok.ru/"
+private const val API_VERSION="api/v1/"
+
 @Module
 class NetworkModule {
 
@@ -70,13 +73,13 @@ class NetworkModule {
     @Provides
     @ApiUrl
     fun provideBaseApiUrl(): String {
-        return BuildConfig.BASE_API_URL
+        return BASE_API_URL
     }
 
     @Provides
     @ApiVersion
     fun provideApiVersion(): String {
-        return BuildConfig.API_VERSION
+        return API_VERSION
     }
 }
 
