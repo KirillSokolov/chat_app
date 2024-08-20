@@ -14,8 +14,8 @@ import dagger.Provides
 internal class UserDetailsModule {
 
     @Provides
-    fun providerUserDetailsViewModelFactory(getUserUseCase: GetUserUseCase, getUserPhotoUseCase: GetUserPhotoUseCase): UserDetailsViewModelFactory {
-        return UserDetailsViewModelFactory(getUserUseCase = getUserUseCase, getUserPhotoUseCase = getUserPhotoUseCase)
+    fun providerUserDetailsViewModelFactory(getUserUseCase: GetUserUseCase, getUserPhotoUseCase: GetUserPhotoUseCase, editUserUseCase: EditUserUseCase): UserDetailsViewModelFactory {
+        return UserDetailsViewModelFactory(getUserUseCase = getUserUseCase, getUserPhotoUseCase = getUserPhotoUseCase, editUserUseCase = editUserUseCase)
     }
 
     @Provides

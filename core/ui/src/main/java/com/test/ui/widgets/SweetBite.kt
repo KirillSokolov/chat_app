@@ -12,11 +12,11 @@ import com.test.chatapp.core.ui.R
 import com.test.ui.design.theme.ChatAppTheme
 
 @Composable
-fun SweetBite(modifier: Modifier = Modifier) {
+fun IconHeader(modifier: Modifier = Modifier) {
     Box(modifier = modifier) {
         Image(
-            painter = painterResource(id = R.drawable.sweet_bite),
-            contentDescription = stringResource(R.string.sweet_bite),
+            painter = painterResource(id = R.drawable.chat_view),
+            contentDescription = stringResource(R.string.icon_header),
             contentScale = ContentScale.Fit
         )
     }
@@ -24,8 +24,8 @@ fun SweetBite(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-fun SweetBitePreview() {
+fun IconHeaderPreview() {
     ChatAppTheme {
-        SweetBite()
+        IconHeader()
     }
 }

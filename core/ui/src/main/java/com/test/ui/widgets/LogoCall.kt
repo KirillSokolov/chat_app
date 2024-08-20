@@ -25,7 +25,7 @@ fun LogoSlogan(modifier: Modifier = Modifier) {
             withStyle(
                 style = defaultCapsSpanStyle
             ) {
-                append(stringResource(id = R.string.your_meal))
+                append(stringResource(id = R.string.your_work))
             }
         },
             textAlign = TextAlign.Center

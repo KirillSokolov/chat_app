@@ -9,12 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextRange
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
-import com.test.authorization.presentation.viewmodel.CheckCodeUiState
 import com.test.authorization.presentation.viewmodel.RegistrationState
-import com.test.authorization.presentation.viewmodel.SendCodeState
 import com.test.data.temp.UserData
 import com.test.ui.design.theme.*
 import com.test.ui.widgets.BackgroundColumn
@@ -22,7 +18,7 @@ import com.test.ui.widgets.DefaultButton
 import com.test.ui.widgets.FormField
 import com.test.ui.widgets.LogoTitle
 import com.test.ui.widgets.StatusBarInsetsSpacer
-import com.test.ui.widgets.SweetBite
+import com.test.ui.widgets.IconHeader
 import com.test.ui.widgets.TextWithSingleLink
 
 @Composable
@@ -34,7 +30,7 @@ fun RegistrationScreen(
     BackgroundColumn {
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
-        SweetBite(
+        IconHeader(
             modifier = Modifier
                 .height(itemHeight75)
                 .width(itemWidth104)

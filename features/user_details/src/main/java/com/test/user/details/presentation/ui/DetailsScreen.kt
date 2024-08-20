@@ -52,6 +52,7 @@ fun DetailsScreen(
     uiState: UserUIState,
     onNameChange: (String) -> Unit,
     onNicknameChange: (String) -> Unit,
+    onAboutChange: (String) -> Unit,
     onPhotoPick: ()->Unit) {
     BackgroundColumn {
         Spacer(modifier = Modifier.height(space24))
@@ -86,6 +87,15 @@ fun DetailsScreen(
             placeholderResId = com.test.chatapp.core.ui.R.string.user_nickname,
             leadingIconResId = com.test.chatapp.core.ui.R.drawable.ic_person,
             onValueChange = onNicknameChange
+        )
+        Spacer(modifier = Modifier.height(space24))
+
+        FormField(
+            modifier = Modifier.fillMaxWidth(),
+            value = uiState.aboutMe,
+            placeholderResId = com.test.chatapp.core.ui.R.string.user_about_yourself,
+            leadingIconResId = R.drawable.ic_person,
+            onValueChange = onAboutChange
         )
 
         Spacer(modifier = Modifier.height(space24))
@@ -124,7 +134,7 @@ fun ProfileSection(uiState: UserUIState, onPhotoPick: ()->Unit ){
                     contentScale = ContentScale.FillBounds
                 )
             } ?: RoundImage(
-                image = painterResource(id = R.drawable.huge_pizza),
+                image = painterResource(id = com.test.chatapp.core.ui.R.drawable.chat_main),
                 modifier = Modifier
                     .size(100.dp)
                     .weight(3f).clickable(onClick = onPhotoPick) ,

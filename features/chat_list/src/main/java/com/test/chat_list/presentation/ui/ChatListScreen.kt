@@ -26,7 +26,7 @@ import com.test.ui.widgets.BackgroundColumn
 import com.test.ui.widgets.CartItem
 import com.test.ui.widgets.DefaultButton
 import com.test.ui.widgets.StatusBarInsetsSpacer
-import com.test.ui.widgets.SweetBite
+import com.test.ui.widgets.IconHeader
 
 @Composable
 fun ChatListScreen(
@@ -49,7 +49,7 @@ fun ChatListScreen(
             )
         }
         Spacer(modifier = Modifier.height(space16))
-        SweetBite(
+        IconHeader(
             modifier = Modifier
                 .height(itemHeight75)
                 .width(itemWidth104)

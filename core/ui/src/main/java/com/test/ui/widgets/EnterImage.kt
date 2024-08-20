@@ -26,18 +26,13 @@ import com.test.ui.design.theme.*
 fun EnterImage(modifier: Modifier = Modifier, @DrawableRes imageResId: Int) {
     Box(
         modifier = modifier
-            .width(circleItemDiameter)
-            .height(circleItemDiameter)
             .fillMaxSize()
             .aspectRatio(1f)
             .background(MaterialTheme.colorScheme.background, shape = CircleShape),
         contentAlignment = Alignment.TopCenter
     ) {
         Image(
-            modifier = Modifier
-                .height(circleImageItemHeight)
-                .width(circleImageItemWidth)
-                .padding(top = padding34),
+            modifier = Modifier,
             painter = painterResource(id = imageResId),
             contentDescription = stringResource(R.string.image_description),
             contentScale = ContentScale.FillBounds

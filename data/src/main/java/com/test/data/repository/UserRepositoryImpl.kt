@@ -5,7 +5,9 @@ import com.test.data.api.repository.UserRepository
 import com.test.data.api.database.UserDataSource
 import com.test.data.network.api.UsersApi
 import com.test.data.temp.UserData
+import com.test.domain.models.request.Avatar
 import com.test.domain.models.request.RefreshToken
+import com.test.domain.models.request.UpdateUser
 import com.test.domain.models.user.User
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -24,8 +26,20 @@ class UserRepositoryImpl@Inject constructor(private val api: UsersApi,
         userDataSource.updateUser(user)
     }
 
-    override suspend fun updateGlobalUser(user: User) = withContext(dispatcher){
+    override suspend fun updateGlobalUser(user: User): Unit = withContext(dispatcher){
         userDataSource.updateUser(user)
+        val photo = dataStore.getUserPhoto()
+
+//       val result = api.updateUser( UserData.accessToken, UpdateUser(
+//            name =user.name,
+//            username =  user.nickName,
+//            avatar = if(photo.isEmpty())
+//                         Avatar()
+//                    else
+//                         Avatar(filename = System.currentTimeMillis().toString(), photo)
+//
+//        ))
+//        result.isSuccessful
     }
 
     override suspend fun getAccessToken(refreshToken: RefreshToken)= withContext(dispatcher) {

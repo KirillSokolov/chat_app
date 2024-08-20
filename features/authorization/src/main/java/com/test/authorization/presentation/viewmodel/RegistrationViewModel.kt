@@ -49,6 +49,7 @@ internal class RegistrationViewModel(private val useCase: RegistrationUseCase, p
                 code = code
             )
         }
+
     }
     fun onPhoneChange(phone: String) {
         _uiState.update {

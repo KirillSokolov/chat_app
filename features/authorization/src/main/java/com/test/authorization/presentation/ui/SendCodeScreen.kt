@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -24,9 +22,8 @@ import com.test.ui.widgets.DefaultButton
 import com.test.ui.widgets.LogoTitle
 import com.test.ui.widgets.PhoneField
 import com.test.ui.widgets.StatusBarInsetsSpacer
-import com.test.ui.widgets.SweetBite
+import com.test.ui.widgets.IconHeader
 import com.test.ui.widgets.TextWithSingleLink
-import com.test.ui.widgets.inputPhoneType
 
 @Composable
 fun SendCodeScreen(
@@ -43,7 +40,7 @@ fun SendCodeScreen(
 
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
-        SweetBite(
+        IconHeader(
             modifier = Modifier
                 .height(itemHeight75)
                 .width(itemWidth104)

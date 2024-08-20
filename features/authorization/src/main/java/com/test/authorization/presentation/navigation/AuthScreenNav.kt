@@ -17,6 +17,7 @@ import com.test.authorization.presentation.ui.RegistrationScreen
 import com.test.authorization.presentation.viewmodel.CheckAuthCodeViewModel
 import com.test.authorization.presentation.viewmodel.RegistrationViewModel
 import com.test.authorization.presentation.viewmodel.SendAuthCodeViewModel
+import com.test.authorization.presentation.viewmodel.SendCodeError
 import com.test.domain.models.exception.IllegalArgumentCodeException
 import com.test.domain.models.exception.IllegalArgumentNameException
 import com.test.domain.models.exception.IllegalArgumentPhoneException
@@ -133,9 +134,9 @@ private fun NavGraphBuilder.signUp(onRegisterSuccess: () -> Unit) {
         val errorState by viewModel.errorState.collectAsStateWithLifecycle()
 
         if(errorState.msg.isNotEmpty()){
-            Toast(errorState.msg)
+            Toast(errorState)
         }else if(errorState.code != 0){
-            Toast(errorState.code)
+            Toast(errorState)
         }
 
         RegistrationScreen(
@@ -146,6 +147,8 @@ private fun NavGraphBuilder.signUp(onRegisterSuccess: () -> Unit) {
         )
     }
 }
+
+
 
 private fun sendRegistrationData(
     viewModel: RegistrationViewModel,
@@ -179,6 +182,15 @@ fun Toast(message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
+@Composable
+fun Toast(errorState: SendCodeError) {
+    val context = LocalContext.current
+if (errorState.msg.isEmpty())
+    Toast.makeText(context, context.getText(errorState.code), Toast.LENGTH_SHORT).show()
+    else
+    Toast.makeText(context, errorState.msg, Toast.LENGTH_SHORT).show()
+
+}
 @Composable
 fun Toast(resId: Int) {
     val context = LocalContext.current

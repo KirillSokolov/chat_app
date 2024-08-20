@@ -45,11 +45,11 @@
     <string name="error_name">The field name cannot be empty!</string>
     <string name="error_username">The field nickname cannot be empty!</string>
 
-    <string name="sweet_bite">Sweet bite</string>
+    <string name="icon_header">Icon Header</string>
     <string name="image_description">Starting logo image</string>
     <string name="get_started">Get Started</string>
     <string name="enjoy">Enjoy</string>
-    <string name="your_meal">Your meal</string>
+    <string name="your_work">Your work</string>
     <string name="not_a_member_register">Not a member? {{Register}} here</string>
     <string name="register">Register</string>
     <string name="forgot_password_reset">Forgot Password? {{Reset}} here</string>

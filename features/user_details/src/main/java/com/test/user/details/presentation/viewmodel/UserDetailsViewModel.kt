@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.test.domain.models.user.User
+import com.test.user.details.domain.EditUserUseCase
 import com.test.user.details.domain.GetUserPhotoUseCase
 import com.test.user.details.domain.GetUserUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 
 
 data class UserUIState(
@@ -34,7 +36,9 @@ data class UserUIState(
 
 internal class UserDetailsViewModel (
     private val getUserUseCase: GetUserUseCase,
-    private val getUserPhotoUseCase: GetUserPhotoUseCase) :
+    private val getUserPhotoUseCase: GetUserPhotoUseCase,
+    private val editUserUseCase: EditUserUseCase
+) :
     ViewModel() {
 
     private val _uiState = MutableStateFlow(
@@ -44,6 +48,44 @@ internal class UserDetailsViewModel (
 
     private val _user = MutableLiveData<User>(User())
     val user: LiveData<User> = _user
+
+    fun onAboutChange(value: String) {
+        _uiState.update {
+            it.copy(
+                aboutMe = value,
+            )
+        }
+        updateUser()
+    }
+
+    fun onNickNameChange(value: String) {
+        _uiState.update {
+            it.copy(
+                nickName = value,
+            )
+        }
+        updateUser()
+    }
+
+    fun updateUser() = with(uiState.value){
+        viewModelScope.launch {
+            editUserUseCase.execute(User(
+                name = name,
+                aboutMe = aboutMe,
+                nickName = nickName,
+                phone = phone
+            ))
+        }
+    }
+
+    fun onNameChange(value: String) {
+        _uiState.update {
+            it.copy(
+                name = value
+            )
+        }
+        updateUser()
+    }
 
     fun onPhotoChange(uri: String) {
         uri?.let { photoUri ->
@@ -59,7 +101,8 @@ internal class UserDetailsViewModel (
         }
     }
 
-    fun load() {
+    fun loadUser() {
+        if(_uiState.value.phone.isEmpty())
         viewModelScope.launch {
             val photo = getUserPhotoUseCase.execute()
             val user = getUserUseCase.execute()
@@ -76,16 +119,21 @@ internal class UserDetailsViewModel (
         }
     }
 
-    fun getBitmap(encodedImage: String):Bitmap{
-        val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    fun getBitmap(encodedImage: String):Bitmap?{
+        if (encodedImage.isNotEmpty()) {
+            val decodedString: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+            return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        }else
+            return null
     }
-
-
 
 }
 
-internal class UserDetailsViewModelFactory(private val getUserUseCase: GetUserUseCase,  private val getUserPhotoUseCase: GetUserPhotoUseCase) :
+internal class UserDetailsViewModelFactory(
+    private val getUserUseCase: GetUserUseCase,
+    private val getUserPhotoUseCase: GetUserPhotoUseCase,
+    private val editUserUseCase: EditUserUseCase
+) :
     ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -95,7 +143,8 @@ internal class UserDetailsViewModelFactory(private val getUserUseCase: GetUserUs
     ): T {
         return UserDetailsViewModel(
             getUserUseCase = getUserUseCase,
-            getUserPhotoUseCase = getUserPhotoUseCase
+            getUserPhotoUseCase = getUserPhotoUseCase,
+            editUserUseCase= editUserUseCase
         ) as T
     }
 }

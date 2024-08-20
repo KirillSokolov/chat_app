@@ -85,6 +85,7 @@ internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) 
     }
 
     fun sendAuthCode(code: String, phone: String, onSignedIn: () -> Unit) {
+        onErrorCodeChange(0)
         val sendAuthCode = sendAuthCodeBuilder {
             this.phone = phone
             this.code = code
@@ -100,7 +101,7 @@ internal class SendAuthCodeViewModel (private val useCase: SendAuthCodeUseCase) 
                     _errorState.update {
                         it.copy(
                             msg = result.message,
-                            code = result.code
+                            code = System.currentTimeMillis().toInt()
                         )
                     }
                    // _screen.value = NextScreen.Error(msg = result.message, code = result.code)

@@ -16,22 +16,22 @@ fun LogoTitle(modifier: Modifier = Modifier) {
             withStyle(
                 style = highlightSpanStyle
             ) {
-                append("K")
+                append("C")
             }
             withStyle(
                 style = defaultCapsSpanStyle
             ) {
-                append("iparo")
+                append("hat")
             }
             withStyle(
                 style = highlightSpanStyle
             ) {
-                append("P")
+                append("A")
             }
             withStyle(
                 style = defaultCapsSpanStyle
             ) {
-                append("izza")
+                append("pp")
             }
         }
         )

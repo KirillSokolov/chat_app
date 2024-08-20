@@ -8,6 +8,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,8 +37,12 @@ fun NavGraphBuilder.details(
         val component = DaggerUserDetailsComponent.builder().addDeps(
             UserDetailsFeatureDepsProvider.deps).build()
         val viewModel:UserDetailsViewModel = viewModel(factory = component.getUserDetailsViewModelFactory())
-        viewModel.load()
+
+
+        viewModel.loadUser()
+
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
         val context = LocalContext.current
         val showPhotoPicker = remember { mutableStateOf(false) }
 
@@ -51,14 +56,16 @@ fun NavGraphBuilder.details(
         )
 
         if(showPhotoPicker.value) {
+
             showPhotoPicker.value = false
             LaunchPhotoPicker(singlePhotoPickerLauncher)
         }
 
         DetailsScreen(
             uiState = uiState,
-            onNicknameChange = {},
-            onNameChange = {},
+            onNicknameChange = viewModel::onNickNameChange,
+            onNameChange = viewModel::onNameChange,
+            onAboutChange = viewModel::onAboutChange,
             onPhotoPick = {showPhotoPicker.value = true}
         )
     }

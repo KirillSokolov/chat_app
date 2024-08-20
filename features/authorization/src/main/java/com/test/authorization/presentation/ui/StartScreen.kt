@@ -13,19 +13,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.test.authorization.di.AuthorizationComponent
 import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
-import com.test.data.temp.UserData
 import com.test.ui.design.SystemBarsColorDisposableEffect
 import com.test.ui.design.theme.*
 import com.test.navigation.StartDestination
@@ -74,14 +70,14 @@ fun StartScreen(modifier: Modifier = Modifier, showButton: MutableState<Boolean>
     ) {
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
-        SweetBite(
+        IconHeader(
             modifier = Modifier
                 .height(itemHeight75)
                 .width(itemWidth104)
         )
         LogoTitle()
         Spacer(modifier = Modifier.height(space32))
-        EnterImage(imageResId = com.test.chatapp.core.ui.R.drawable.huge_pizza)
+        EnterImage(imageResId = com.test.chatapp.core.ui.R.drawable.chat_main)
         Spacer(modifier = Modifier.height(space32))
         LogoSlogan()
         Spacer(modifier = modifier.height(space40))

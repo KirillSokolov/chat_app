@@ -26,7 +26,7 @@ import com.test.ui.widgets.DefaultButton
 import com.test.ui.widgets.LogoTitle
 import com.test.ui.widgets.OtpCells
 import com.test.ui.widgets.StatusBarInsetsSpacer
-import com.test.ui.widgets.SweetBite
+import com.test.ui.widgets.IconHeader
 
 @Composable
 fun CheckCodeScreen(
@@ -37,7 +37,7 @@ fun CheckCodeScreen(
     BackgroundColumn {
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
-        SweetBite(
+        IconHeader(
             modifier = Modifier
                 .height(itemHeight75)
                 .width(itemWidth104)
