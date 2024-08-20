@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import com.test.authorization.di.AuthorizationComponent
 import com.test.authorization.di.AuthorizationFeatureDepsProvider
 import com.test.authorization.di.DaggerAuthorizationComponent
+import com.test.data.temp.UserData
 import com.test.ui.design.SystemBarsColorDisposableEffect
 import com.test.ui.design.theme.*
 import com.test.navigation.StartDestination
@@ -43,7 +44,8 @@ fun NavGraphBuilder.start(externalNavigator: StartNavigator){
             externalNavigator.onNavigateHome()
 
         LaunchedEffect(key1 = Any()) {
-            if (component.getDataPreference().getRefreshToken().isNotEmpty()) {
+            val token = component.getDataPreference().getRefreshToken()
+            if (token.isNotEmpty()) {
                 showHome.value = true
             }else{
                 showButton.value = true

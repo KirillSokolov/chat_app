@@ -1,6 +1,8 @@
 package com.test.user.details.presentation.navigation
 
+import android.content.Context
 import android.net.Uri
+import android.util.Base64
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -9,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
@@ -19,6 +23,11 @@ import com.test.user.details.di.DaggerUserDetailsComponent
 import com.test.user.details.di.UserDetailsFeatureDepsProvider
 import com.test.user.details.presentation.ui.DetailsScreen
 import com.test.user.details.presentation.viewmodel.UserDetailsViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 fun NavGraphBuilder.details(
     onNavigate: () -> Unit, onBack: () -> Unit
@@ -29,12 +38,16 @@ fun NavGraphBuilder.details(
         val viewModel:UserDetailsViewModel = viewModel(factory = component.getUserDetailsViewModelFactory())
         viewModel.load()
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
+        val context = LocalContext.current
         val showPhotoPicker = remember { mutableStateOf(false) }
 
         val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.PickVisualMedia(),
-            onResult = { uri -> viewModel.onPhotoChange(uri) }
+            onResult = { uri ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.onPhotoChange(getBase64ForUri(context = context, uri!!))
+                }
+            }
         )
 
         if(showPhotoPicker.value) {
@@ -49,6 +62,11 @@ fun NavGraphBuilder.details(
             onPhotoPick = {showPhotoPicker.value = true}
         )
     }
+}
+
+private suspend fun getBase64ForUri(context: Context, uri: Uri): String  = withContext(Dispatchers.IO){
+    val bytes = context.contentResolver.openInputStream(uri)?.readBytes()
+    return@withContext Base64.encodeToString(bytes, Base64.DEFAULT)
 }
 
 @Composable

@@ -25,24 +25,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.chatapp.core.ui.R
-import com.test.data.temp.UserData
 import com.test.ui.design.theme.space24
 import com.test.ui.design.theme.space56
 import com.test.ui.design.theme.space8
 import com.test.ui.widgets.BackgroundColumn
-import com.test.ui.widgets.DefaultButton
 import com.test.ui.widgets.FormField
-import com.test.ui.widgets.TextWithSingleLink
 import com.test.user.details.presentation.viewmodel.UserUIState
 
 data class ImageWithText(
@@ -59,7 +56,7 @@ fun DetailsScreen(
     BackgroundColumn {
         Spacer(modifier = Modifier.height(space24))
 
-        ProfileSection(onPhotoPick)
+        ProfileSection(uiState, onPhotoPick)
 
         Row(modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically) {
@@ -95,7 +92,7 @@ fun DetailsScreen(
 
         FormField(
             modifier = Modifier.fillMaxWidth(),
-            value = UserData.phone,
+            value = uiState.phone,
             enabled = false,
             placeholderResId = com.test.chatapp.core.ui.R.string.name_placeholder,
             leadingIconResId = com.test.chatapp.core.ui.R.drawable.ic_phone,
@@ -107,7 +104,7 @@ fun DetailsScreen(
 }
 
 @Composable
-fun ProfileSection(onPhotoPick: ()->Unit){
+fun ProfileSection(uiState: UserUIState, onPhotoPick: ()->Unit ){
     Column(Modifier.fillMaxWidth()) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -115,13 +112,24 @@ fun ProfileSection(onPhotoPick: ()->Unit){
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
         ) {
-            RoundImage(
+            uiState.bitmap?.let {
+                Image(
+                    bitmap = it.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(80.dp)
+                        .clip(CircleShape)
+                        .weight(3f).clickable(onClick = onPhotoPick)
+                        .border(2.dp, Color.Gray, CircleShape),
+                    contentScale = ContentScale.FillBounds
+                )
+            } ?: RoundImage(
                 image = painterResource(id = R.drawable.huge_pizza),
                 modifier = Modifier
                     .size(100.dp)
                     .weight(3f).clickable(onClick = onPhotoPick) ,
+                )
 
-            )
             Spacer(modifier = Modifier.width(16.dp))
             StatSection(modifier = Modifier.weight(7f))
         }
