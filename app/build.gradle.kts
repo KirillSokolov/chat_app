@@ -11,8 +11,8 @@ val properties = Properties().apply {
     rootProject.file("local.properties").reader().use(::load)
 }
 
-val baseApiUrl: String = properties.getProperty("BASE_API_URL") as String
-val apiVersion: String = properties.getProperty("API_VERSION") as String
+//val baseApiUrl: String = properties.getProperty("BASE_API_URL") as String
+//val apiVersion: String = properties.getProperty("API_VERSION") as String
 
 android {
     namespace = "com.test.chatapp"
@@ -37,8 +37,8 @@ android {
         debug {
 
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_API_URL", "\"${baseApiUrl}\"")
-            buildConfigField("String", "API_VERSION", "\"${apiVersion}\"")
+        //    buildConfigField("String", "BASE_API_URL", "\"${baseApiUrl}\"")
+         //   buildConfigField("String", "API_VERSION", "\"${apiVersion}\"")
         }
         release {
             isMinifyEnabled = false
